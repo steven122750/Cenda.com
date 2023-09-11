@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Modulo de información de pruebas</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="JS/scriptModuloInfoPruebas.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    
+    <div class="col-md-12 d-flex align-items-start justify-content-center" style="height: 15vh;">
+        <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 300px;" />
+    </div>
+    <h4 class="mb-4">Pruebas de alcoholemia registradas</h4>
+
+    <input type="text" id="documentoInput" class="form-control form-control-lg" placeholder="Buscar por documento del funcionario" />
+    <input type="text" id="nombreInput" class="form-control form-control-lg" placeholder="Buscar por nombre del funcionario" />
+
+    <div class="btn-container mt-3"> 
+        <button onclick="tableToExcel('tablaRegistros', 'Registros de pruebas de alcoholemia')" id="exportButton" class="btn btn-primary">Exportar registros a Excel</button>
+        <button class="btn btn-primary" type="submit" id="regAlc">Registrar prueba de alcoholemia</button>
+
+        <script>
+           document.getElementById("regAlc").addEventListener("click", function() {
+                    window.location.href = "Registro.html";
+                });
+        </script>
+
+    </div>
+    
+    <div style="max-height: 300px; overflow-y: auto;">
+
+    <table id="tablaRegistros" class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th scope="col">Fecha de prueba</th>
+            <th scope="col">Número de prueba</th>
+            <th scope="col">Nombre del funcionario</th>
+            <th scope="col">Documento del funcionario</th>
+            <th scope="col">Resultado de la prueba</th>
+            <th scope="col">Mg de alcohol registrados</th>
+            <th scope="col">Grado de alcohol</th>
+            <th scope="col">Nombre de quien toma la prueba</th>
+            <th scope="col">Documento de quien toma la prueba</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>11/09/2023</td>
+            <td>1234</td>
+            <td>Mark Otto</td>
+            <td>10988767876</td>
+            <td>Negativo</td>
+            <td>0</td>
+            <td>0</td>
+            <td>Jacob Janes</td>
+            <td>1987827878</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>10/09/2023</td>
+            <td>6543</td>
+            <td>Fernando Toro</td>
+            <td>18767676658</td>
+            <td>Positivo</td>
+            <td>50</td>
+            <td>1</td>
+            <td>Jacob Janes</td>
+            <td>1987827878</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>11/09/2023</td>
+            <td>1234</td>
+            <td>Mark Otto</td>
+            <td>10988767876</td>
+            <td>Negativo</td>
+            <td>0</td>
+            <td>0</td>
+            <td>Jacob Janes</td>
+            <td>1987827878</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>11/09/2023</td>
+            <td>1234</td>
+            <td>Mark Otto</td>
+            <td>10988767876</td>
+            <td>Negativo</td>
+            <td>0</td>
+            <td>0</td>
+            <td>Jacob Janes</td>
+            <td>1987827878</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>11/09/2023</td>
+            <td>1234</td>
+            <td>Mark Otto</td>
+            <td>10988767876</td>
+            <td>Negativo</td>
+            <td>0</td>
+            <td>0</td>
+            <td>Jacob Janes</td>
+            <td>1987827878</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>11/09/2023</td>
+            <td>1234</td>
+            <td>Mark Otto</td>
+            <td>10988767876</td>
+            <td>Negativo</td>
+            <td>0</td>
+            <td>0</td>
+            <td>Jacob Janes</td>
+            <td>1987827878</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>11/09/2023</td>
+            <td>1234</td>
+            <td>Mark Otto</td>
+            <td>10988767876</td>
+            <td>Negativo</td>
+            <td>0</td>
+            <td>0</td>
+            <td>Jacob Janes</td>
+            <td>1987827878</td>
+          </tr>
+         
+        </tbody>
+
+      </table
+
+    </div>
+   
+</body>
+
+<footer>
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+        <!-- Copyright -->
+        <div class="text-white mb-3 mb-md-0">
+            Copyright © 2023. All rights reserved.
+        </div>
+        <!-- Copyright -->
+    
+        <!-- Right -->
+        <div>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="#!" class="text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </div>
+</footer>
+
+
+
+</html>

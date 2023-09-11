@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar funcionario</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="JS/scriptGestionUsuario.js"></script>
+</head>
+<body>
+    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 89.8vh;">
+        <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 300px;" />
+        <h2 class="mb-4">Editar datos del funcionario</h2>
+        <form style="max-width: 400px; width: 100%;">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombres y apellidos">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Cargo">
+            </div>
+
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected>Cambiar de sede</option>
+                <option value="1">Cenda Armenia</option>
+                <option value="2">Cenda Buenaventura</option>
+                <option value="3">CDA Quimbaya SAS</option>
+                <option value="3">CDA Olmo</option>
+              </select>
+
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Confirmar</button>
+            </div>
+            <button id="btnEliminar" type="button" class="btn btn-danger centered-button" >Eliminar funcionario de la base de datos</button>
+
+        </form>
+    </div>
+</body>
+
+
+
+
+<footer>
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+        <!-- Copyright -->
+        <div class="text-white mb-3 mb-md-0">
+            Copyright © 2023. All rights reserved.
+        </div>
+        <!-- Copyright -->
+    
+        <!-- Right -->
+        <div>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="#!" class="text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </div>
+</footer>
+</html>
