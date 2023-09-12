@@ -3,10 +3,20 @@
 
 <?php
 
-      include("Includes/Head.php")
+        include("db.php"); 
+      include("Includes/Head.php");
+     
+      
+      session_start();
 
-  ?>
- 
+      if (isset($_SESSION['documentoAdmin'])){
+          $cliente = $_SESSION['documentoAdmin'];
+      }else{
+   header('Location: index.php');
+       die() ;
+      }
+?>
+
 <body>
 
     <div class="container text-center">

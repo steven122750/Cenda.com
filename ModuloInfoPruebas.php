@@ -3,9 +3,11 @@
 
 <?php
 
-      include("Includes/Head.php")
+      include("Includes/Head.php");
+      include("db.php")
 
   ?>
+
 
 
 <body>
@@ -18,13 +20,22 @@
     <input type="text" id="documentoInput" class="form-control form-control-lg" placeholder="Buscar por documento del funcionario" />
     <input type="text" id="nombreInput" class="form-control form-control-lg" placeholder="Buscar por nombre del funcionario" />
 
+    <select class="form-select form-select-lg mb-3" id="sedeSelect" aria-label=".form-select-lg example">
+      
+      <option value="Cenda Armenia">Cenda Armenia</option>
+      <option value="Cenda Buenaventura">Cenda Buenaventura</option>
+      <option value="CDA Quimbaya SAS">CDA Quimbaya SAS</option>
+      <option value="CDA Olmo">CDA Olmo</option>
+    </select>
+
+
     <div class="btn-container mt-3"> 
         <button onclick="tableToExcel('tablaRegistros', 'Registros de pruebas de alcoholemia')" id="exportButton" class="btn btn-primary">Exportar registros a Excel</button>
         <button class="btn btn-primary" type="submit" id="regAlc">Registrar prueba de alcoholemia</button>
 
         <script>
            document.getElementById("regAlc").addEventListener("click", function() {
-                    window.location.href = "Registro.html";
+                    window.location.href = "Registro.php";
                 });
         </script>
 
@@ -35,7 +46,8 @@
     <table id="tablaRegistros" class="table">
         <thead class="thead-dark">
           <tr>
-            <th>#</th>
+
+            <th scope="col">Sede</th>
             <th scope="col">Fecha de prueba</th>
             <th scope="col">Número de prueba</th>
             <th scope="col">Nombre del funcionario</th>
@@ -45,93 +57,45 @@
             <th scope="col">Grado de alcohol</th>
             <th scope="col">Nombre de quien toma la prueba</th>
             <th scope="col">Documento de quien toma la prueba</th>
+            <th scope="col">Editar datos</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>11/09/2023</td>
-            <td>1234</td>
-            <td>Mark Otto</td>
-            <td>10988767876</td>
-            <td>Negativo</td>
-            <td>0</td>
-            <td>0</td>
-            <td>Jacob Janes</td>
-            <td>1987827878</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>10/09/2023</td>
-            <td>6543</td>
-            <td>Fernando Toro</td>
-            <td>18767676658</td>
-            <td>Positivo</td>
-            <td>50</td>
-            <td>1</td>
-            <td>Jacob Janes</td>
-            <td>1987827878</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>11/09/2023</td>
-            <td>1234</td>
-            <td>Mark Otto</td>
-            <td>10988767876</td>
-            <td>Negativo</td>
-            <td>0</td>
-            <td>0</td>
-            <td>Jacob Janes</td>
-            <td>1987827878</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>11/09/2023</td>
-            <td>1234</td>
-            <td>Mark Otto</td>
-            <td>10988767876</td>
-            <td>Negativo</td>
-            <td>0</td>
-            <td>0</td>
-            <td>Jacob Janes</td>
-            <td>1987827878</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>11/09/2023</td>
-            <td>1234</td>
-            <td>Mark Otto</td>
-            <td>10988767876</td>
-            <td>Negativo</td>
-            <td>0</td>
-            <td>0</td>
-            <td>Jacob Janes</td>
-            <td>1987827878</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>11/09/2023</td>
-            <td>1234</td>
-            <td>Mark Otto</td>
-            <td>10988767876</td>
-            <td>Negativo</td>
-            <td>0</td>
-            <td>0</td>
-            <td>Jacob Janes</td>
-            <td>1987827878</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>11/09/2023</td>
-            <td>1234</td>
-            <td>Mark Otto</td>
-            <td>10988767876</td>
-            <td>Negativo</td>
-            <td>0</td>
-            <td>0</td>
-            <td>Jacob Janes</td>
-            <td>1987827878</td>
-          </tr>
+      
+        <?php
+                        $query = "SELECT * FROM prueba";
+                        $result= mysqli_query($conn, $query);    
+
+                        while($row = mysqli_fetch_assoc($result)) { ?>
+                        <tr>
+                            
+                            <td><?php echo $row['sede']; ?></td>
+                            <td><?php echo $row['fecha']; ?></td>
+                            <td><?php echo $row['numeroPrueba']; ?></td>
+                            <td><?php echo $row['nombreFuncionario']; ?></td>
+                            <td><?php echo $row['documentoFuncionario']; ?></td>
+                            <td><?php echo $row['resultado']; ?></td>
+                            <td><?php echo $row['mg']; ?></td>
+                            <td><?php echo $row['grado']; ?></td>
+                            <td><?php echo $row['nombreTomador']; ?></td>
+                            <td><?php echo $row['documentoTomador']; ?></td>
+
+
+
+                            <td>
+                              <a href="editarPrueba.php?numeroPrueba=<?php echo $row['numeroPrueba']?>" class="btn btn-secondary">
+                                <i class="fas fa-marker"></i>
+                              </a>
+          
+                            </td>
+                            
+                        </tr>
+
+
+                        
+                    <?php } ?>
+                     
+            
          
         </tbody>
 

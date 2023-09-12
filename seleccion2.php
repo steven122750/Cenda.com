@@ -3,7 +3,8 @@
 
 <?php
 
-      include("Includes/Head.php")
+      include("Includes/Head.php");
+    
 
   ?>
 

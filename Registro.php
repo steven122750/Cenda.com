@@ -13,7 +13,10 @@
 
     <script src="JS/scriptRegistro.js"></script>
     
-   
+    <?php include("db.php"); 
+
+?>
+
 </head>
     
 <body>
@@ -35,79 +38,43 @@
 
                 <input type="text" id="documentoInput" class="form-control form-control-lg" placeholder="Buscar por documento" />
                 <input type="text" id="nombreInput" class="form-control form-control-lg" placeholder="Buscar por nombre" />
+
+                <select class="form-select form-select-lg mb-3" id="sedeSelect" aria-label=".form-select-lg example" name = "sedePrueba">
+                    
+
+                <option value="Cenda Armenia">Cenda Armenia</option>
+                    <option value="Cenda Buenaventura">Cenda Buenaventura</option>
+                    <option value="CDA Quimbaya SAS">CDA Quimbaya SAS</option>
+                    <option value="CDA Olmo">CDA Olmo</option>
+                </select>
                 
                 
 
-                <table class="table mx-auto mr-5"> <!-- Agregamos la clase mr-5 para mover la tabla más a la derecha -->
+                <table class="table mx-auto mr-2"> <!-- Agregamos la clase mr-5 para mover la tabla más a la derecha -->
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Sede</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Documento</th>
                             <th scope="col">Cargo</th>
                         </tr>
                     </thead>
                     <tbody>
+                      
+                    <?php
+                        $query = "SELECT * FROM funcionarios";
+                        $result= mysqli_query($conn, $query);    
+
+                        while($row = mysqli_fetch_assoc($result)) { ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>1987678765</td>
-                            <td>Ingeniero</td>
+                            <td><?php echo $row['sede']; ?></td>
+                            <td><?php echo $row['nombre']; ?></td>
+                            <td><?php echo $row['documento']; ?></td>
+                            <td><?php echo $row['cargo']; ?></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>0987876598</td>
-                            <td>Programador</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>6785789876</td>
-                            <td>Limpieza</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>90987676</td>
-                            <td>Mecanico</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                         <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>   
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>   
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>   
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>   
+                    <?php } ?>
+                     
+            
                     </tbody>
                 </table>
                
@@ -119,14 +86,26 @@
   <div class="col-md-6 form-container">
     <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 65vh;">
         <form class="container-form" method = "POST" action="guardarPrueba.php" id = "formularioResultado">
-            <h5 class="mb-4">Resultado de la prueba</h5>
-            <div class="form-outline mb-3">
-                <input type="text" id="form3Example4" class="form-control form-control-lg" name = "pruebaNombreFuncionario" placeholder="Nombres y apellidos" />
+            <h5 class="mb-2">Resultado de la prueba</h5>
+            <div class="form-outline mb-2">
+                <input type="text" id="form3Example4" class="form-control form-control-lg" name = "pruebaNombreFuncionario" placeholder="Nombre del funcionario" />
             </div>
-            <div class="form-outline mb-4">
-                <input type="text" id="form3Example3" class="form-control form-control-lg" name = "pruebaDocumentoFuncionario" placeholder="Número de documento" />
+            <div class="form-outline mb-2">
+                <input type="text" id="form3Example3" class="form-control form-control-lg" name = "pruebaDocumentoFuncionario" placeholder="Documento del funcionario" />
             </div>
-            <div class="form-outline mb-4">
+
+            <div class="form-outline mb-2">
+                <input type="text" id="sedeFuncForm" class="form-control form-control-lg" name = "sedeFuncForm" placeholder="Sede" />
+            </div>
+
+            <div class="form-outline mb-2">
+                <input type="text" id="form3Example4" class="form-control form-control-lg" name = "pruebaNombreTomador" placeholder="Nombre de quien realiza" />
+            </div>
+            <div class="form-outline mb-2">
+                <input type="text" id="form3Example3" class="form-control form-control-lg" name = "pruebaDocTomador" placeholder="Documento de quien realiza" />
+            </div>
+
+            <div class="form-outline mb-2">
                 <input type="text" id="form3Example3" class="form-control form-control-lg" name = "numeroPrueba" placeholder="Número de prueba" />
             </div>
             <div>Resultado de la prueba</div>
@@ -144,18 +123,18 @@
                     Negativo
                 </label>
             </div>
-            <div class="form-outline mb-4" id="textoAdicional" style="display: none; width: 100%;">
-                <input type="number" id="form3Example5" class="form-control form-control-lg" placeholder="Mg de alcohol" name = "mg">
-                <label id="gradoAlcoholLabel"></label>
-            </div>
+           
+            <div class="form-outline mb-2" id="textoAdicional" style="display: none; width: 100%;">
+                <input type="number" id="form3Example5" class="form-control form-control-lg" placeholder="Mg de alcohol" name="mg"  step="0.01">
+                <label for="gradoAlcohol" id="gradoAlcoholLabel"></label>
+                <input type="hidden" id="gradoAlcohol" name="grado" value="Grado de alcohol"> 
+            </div>  
             
-            <div class="text-center text-lg-start mt-4 pt-2">
+            <div class="text-center text-lg-start mt-2 pt-2">
                 <button type="submit" id="btnSiguiente" class="btn btn-primary btn-lg" style="width: 100%;" name = "guardarPrueba">Registrar</button>
             </div>
             
         </form>
-
-        
 
 
     </div>
