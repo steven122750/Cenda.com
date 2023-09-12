@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,7 @@
     
    
 </head>
-
+    
 <body>
 
     <div class="col-md-12 d-flex align-items-start justify-content-center" style="height: 50vh;">
@@ -117,41 +118,46 @@
   <!-- Columna para el formulario (Derecha) -->
   <div class="col-md-6 form-container">
     <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 65vh;">
-        <form class="container-form">
+        <form class="container-form" method = "POST" action="guardarPrueba.php" id = "formularioResultado">
             <h5 class="mb-4">Resultado de la prueba</h5>
             <div class="form-outline mb-3">
-                <input type="text" id="form3Example4" class="form-control form-control-lg" placeholder="Nombres y apellidos" />
+                <input type="text" id="form3Example4" class="form-control form-control-lg" name = "pruebaNombreFuncionario" placeholder="Nombres y apellidos" />
             </div>
             <div class="form-outline mb-4">
-                <input type="text" id="form3Example3" class="form-control form-control-lg" placeholder="Número de documento" />
+                <input type="text" id="form3Example3" class="form-control form-control-lg" name = "pruebaDocumentoFuncionario" placeholder="Número de documento" />
             </div>
             <div class="form-outline mb-4">
-                <input type="text" id="form3Example3" class="form-control form-control-lg" placeholder="Número de prueba" />
+                <input type="text" id="form3Example3" class="form-control form-control-lg" name = "numeroPrueba" placeholder="Número de prueba" />
             </div>
             <div>Resultado de la prueba</div>
             <div></div>
             <div></div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="resultadoPrueba" id="flexRadioDefault1" value="Positivo">
+                <input class="form-check-input" type="radio" name="resultadoPrueba" id="flexRadioDefault1" value="Positivo" name = "resultadoPrueba">
                 <label class="form-check-label" for="flexRadioDefault1">
                     Positivo
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="resultadoPrueba" id="flexRadioDefault2" value="Negativo" checked>
+                <input class="form-check-input" type="radio" name="resultadoPrueba" id="flexRadioDefault2" value="Negativo" checked name = "resultadoPrueba">
                 <label class="form-check-label" for="flexRadioDefault2">
                     Negativo
                 </label>
             </div>
             <div class="form-outline mb-4" id="textoAdicional" style="display: none; width: 100%;">
-                <input type="number" id="form3Example5" class="form-control form-control-lg" placeholder="Mg de alcohol">
+                <input type="number" id="form3Example5" class="form-control form-control-lg" placeholder="Mg de alcohol" name = "mg">
                 <label id="gradoAlcoholLabel"></label>
             </div>
+            
             <div class="text-center text-lg-start mt-4 pt-2">
-                <button type="button" id="btnSiguiente" class="btn btn-primary btn-lg" style="width: 100%;">Siguiente</button>
+                <button type="submit" id="btnSiguiente" class="btn btn-primary btn-lg" style="width: 100%;" name = "guardarPrueba">Registrar</button>
             </div>
             
         </form>
+
+        
+
+
     </div>
 </div>
 
@@ -159,38 +165,15 @@
         </div>
     </div>
     
-       <footer>
-        <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-            <!-- Copyright -->
-            <div class="text-white mb-3 mb-md-0">
-                Copyright © 2023. All rights reserved.
-            </div>
-            <!-- Copyright -->
-        
-            <!-- Right -->
-            <div>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="#!" class="text-white">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
-            <!-- Right -->
-        </div>
-    </footer>
-    
+
     </body>
 
    
-    
-        
+    <?php
+
+    include("Includes/Footer.php")
+
+    ?>
         
         
         
