@@ -18,15 +18,15 @@ if (isset($_POST['guardarFuncionario'])) {
  
     $result = mysqli_query($conn, $query);
  
-    if(!$result){
-        $_SESSION['message'] = 'Error';
-        $_SESSION['message_type'] = 'alert';
-        header('Location: RegistroUsuario.php');
-    }else{
-        $_SESSION['message'] = 'Funcionario guardado con éxito';
-        $_SESSION['message_type'] = 'success';
-        header('Location: RegistroUsuario.php');
-    }
+    if (!$result) {
+      
+
+    } 
+
+    $_SESSION['message'] = 'Task Saved Successfully';
+    $_SESSION['message_type'] = 'success';
+    header('Location: RegistroUsuario.php');
+    
 
 
    /* while($row = mysqli_fetch_assoc($result1)) {

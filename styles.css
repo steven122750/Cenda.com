@@ -47,24 +47,12 @@ body::after {
     pointer-events: none; 
 }
 
-.top-section {
-    margin-top: -250px; 
-    margin-bottom: 50px;
-}
-
-.container-form {
-    margin-top: -120px; 
-    
-}
-
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
 }
-.col-md-6{
-    margin-top: -200px; 
-}
+
 
 .campo-oculto {
     display: none;
@@ -73,11 +61,7 @@ footer {
      display: none;
 }
 
-table {
-    width: 80%; 
-    margin: 0 auto; 
-    border-collapse: collapse;
-  }
+
   
   th, td {
     border: 1px solid #ccc; 
@@ -103,7 +87,36 @@ input:invalid {
     border: 2px solid black;
   }
 
+  .custom-link {
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative; /* Para posicionar la línea */
+  }
   
+  .custom-link:hover {
+    font-size: 16px;
+    color: #ffc107;
+  }
+  
+  .custom-link::after { /* Pseudo-elemento para la línea */
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px; /* Altura de la línea */
+    background-color: white; /* Color de la línea */
+    transform: scaleX(0); /* Inicialmente, la línea no se ve */
+    transform-origin: center;
+    transition: transform 0.3s ease; /* Animación de la línea */
+  }
+  
+  .custom-link:hover::after {
+    transform: scaleX(1); /* Mostrar la línea al pasar el mouse */
+  }
+  
+
+    
   
   
   

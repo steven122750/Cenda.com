@@ -16,6 +16,7 @@
     <?php include("db.php"); 
     
     include("Includes/sessionSecurity.php");
+    include("Includes/nav.php");
 
     ?>
 
@@ -23,20 +24,19 @@
     
 <body>
 
-    <div class="col-md-12 d-flex align-items-start justify-content-center" style="height: 50vh;">
+    <div class="col-md-12 d-flex align-items-start justify-content-center" style="height: 85vh;">
         <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 300px;" />
     </div>
     
     
     <div class="container-fluid top-section">
-
-        
-        <h4 class="mb-4">Funcionarios registrados en la sede seleccionada</h4>
         
         <div class="row">
             <!-- Columna para la tabla (Izquierda) -->
                 
-            <div class="col-md-6" style="max-height: 500px; overflow-y: auto;">
+            <div class="col-md-6" style="max-height: 400px; overflow-y: auto;">
+
+            <h4 class="mb-">Funcionarios registrados en la sede seleccionada</h4>
 
                 <input type="text" id="documentoInput" class="form-control form-control-lg" placeholder="Buscar por documento" />
                 <input type="text" id="nombreInput" class="form-control form-control-lg" placeholder="Buscar por nombre" />
@@ -86,7 +86,7 @@
 
   <!-- Columna para el formulario (Derecha) -->
   <div class="col-md-6 form-container">
-    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 65vh;">
+    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 58vh;">
         <form class="container-form" method = "POST" action="guardarPrueba.php" id = "formularioResultado">
             <h5 class="mb-2">Resultado de la prueba</h5>
             <div class="form-outline mb-2">
@@ -157,9 +157,7 @@
     ?>
         
         
-        
 
+   
 
 </html>
-
-

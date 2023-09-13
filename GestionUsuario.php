@@ -6,6 +6,7 @@
     include("db.php"); 
     include("Includes/Head.php");
     include("Includes/sessionSecurity.php");
+    Include("Includes/nav.php");
      
   ?>
 

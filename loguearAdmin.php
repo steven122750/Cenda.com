@@ -48,7 +48,7 @@ if (isset($_POST["documentoAdmin"]) && isset($_POST["passAdmin"])) {
             // Puedes agregar más información a la sesión si es necesario
 
             // Redirigir al usuario a la página de inicio o a donde desees
-            header("Location: seleccion.php");
+            header("Location: moduloInfoPruebas.php");
             exit();
         } else {
             // Contraseña incorrecta
