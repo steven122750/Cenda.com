@@ -14,8 +14,10 @@
     <script src="JS/scriptRegistro.js"></script>
     
     <?php include("db.php"); 
+    
+    include("Includes/sessionSecurity.php");
 
-?>
+    ?>
 
 </head>
     

@@ -3,19 +3,14 @@
 
 <?php
 
-      include("Includes/Head.php")
-
+      include("Includes/Head.php");
+      include("db.php");
+     
   ?>
 
 <body>
 
-<?php
 
-session_start();
-include("db.php")
-
-
-?>
   
     <section class="vh-100">
         <div class="container-fluid h-custom">

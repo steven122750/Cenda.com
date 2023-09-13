@@ -2,6 +2,7 @@
 
 include("db.php");
 session_start();
+   
 
 /*$documentoAdmin = "0000"; // Reemplaza esto con el número de documento del administrador
 $correoAdmin = "correo@example.com"; // Reemplaza esto con el correo del administrador
@@ -47,7 +48,7 @@ if (isset($_POST["documentoAdmin"]) && isset($_POST["passAdmin"])) {
             // Puedes agregar más información a la sesión si es necesario
 
             // Redirigir al usuario a la página de inicio o a donde desees
-            header("Location: Seleccion.php");
+            header("Location: seleccion.php");
             exit();
         } else {
             // Contraseña incorrecta

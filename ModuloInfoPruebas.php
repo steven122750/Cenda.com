@@ -3,12 +3,11 @@
 
 <?php
 
-      include("Includes/Head.php");
-      include("db.php")
+  include("Includes/Head.php");
+  include("db.php");
+  include("Includes/sessionSecurity.php");
 
   ?>
-
-
 
 <body>
     

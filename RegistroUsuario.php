@@ -4,13 +4,12 @@
 <?php
 
       include("Includes/Head.php");
+      include("Includes/sessionSecurity.php");
 
   ?>
 
 <body>
    
-
-
     
     <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 90vh;">
         <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 300px;" />
@@ -20,14 +19,14 @@
 
         <form style="max-width: 400px; width: 100%;" method = "POST" action="guardarFuncionario.php" >
             <div class="form-group">
-                <input type="text" class="form-control form-control-lg" name="nombreFuncionario" aria-describedby="emailHelp" placeholder="Nombres y apellidos" required>
+                <input type="text" class="form-control form-control-lg" name="nombreFuncionario" aria-describedby="emailHelp" placeholder="Nombres y apellidos" >
             </div>
             <div class="form-group">
-                <input type="text" class="form-control form-control-lg" name="documentoFuncionario" placeholder="Número de documento" required>
+                <input type="text" class="form-control form-control-lg" name="documentoFuncionario" placeholder="Número de documento" >
             </div>
     
             <div class="form-group">
-                <input type="text" class="form-control form-control-lg" name="cargoFuncionario" placeholder="Cargo" required>
+                <input type="text" class="form-control form-control-lg" name="cargoFuncionario" placeholder="Cargo" >
             </div>
     
             <select class="form-select form-select-lg mb-3" name="sedeFuncionario" aria-label=".form-select-lg example">

@@ -3,60 +3,49 @@
 
 <?php
 
-        include("db.php"); 
-      include("Includes/Head.php");
-     
-      
-      session_start();
+include("Includes/Head.php");
+include("Includes/sessionSecurity.php");
 
-      if (isset($_SESSION['documentoAdmin'])){
-          $cliente = $_SESSION['documentoAdmin'];
-      }else{
-   header('Location: index.php');
-       die() ;
-      }
 ?>
 
-<body>
 
+<body>
     <div class="container text-center">
-        <div class="col-md-12 d-flex align-items-center justify-content-center" style="height: 40vh;">
+        
+        <div class="col-md-12 d-flex align-items-center justify-content-center" style="height: 50vh;">
             <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 300px;" />
         </div>
 
-        <h4 >Selecciona una sede</h4>
-
         <div class="btn-container mt-3"> 
-            <button class="btn btn-primary" type="submit" id="armeniaBtn">Cenda Armenia</button>
-            <button class="btn btn-primary" type="submit" id="buenaBtn">Cenda Buenaventura</button>
-            <button class="btn btn-primary" type="submit" id="quimBtn">CDA Quimbaya SAS</button>
-            <button class="btn btn-primary" type="submit" id="olmoBtn">CDA Olmo</button>
+            <button class="btn btn-primary" type="submit" id="regFunBtn">Registrar funcionario</button>
+            <button class="btn btn-primary" type="submit" id="rePruBtn">Registrar prueba de alcoholemia</button>
+            <button class="btn btn-primary" type="submit" id="verRegistrosBtn">Ver y exportar registros de alcoholemia</button>
+            <button class="btn btn-primary" type="submit" id="regFuncioBtn">Ver y exportar registros de funcionarios</button>
 
-                        <script>
+            <script>
     
-                            document.getElementById("armeniaBtn").addEventListener("click", function() {
-                                window.location.href = "seleccion2.php";
-                            });
-                            document.getElementById("buenaBtn").addEventListener("click", function() {
-                                window.location.href = "seleccion2.php";
-                            });
-                            document.getElementById("quimBtn").addEventListener("click", function() {
-                                window.location.href = "seleccion2.php";
-                            });
-                            document.getElementById("olmoBtn").addEventListener("click", function() {
-                                window.location.href = "seleccion2.php";
-                            });
-                        </script>
+                document.getElementById("regFunBtn").addEventListener("click", function() {
+                    window.location.href = "RegistroUsuario.php";
+                });
+                document.getElementById("rePruBtn").addEventListener("click", function() {
+                    window.location.href = "Registro.php";
+                });
+                document.getElementById("verRegistrosBtn").addEventListener("click", function() {
+                    window.location.href = "moduloInfoPruebas.php";
+                });
+                document.getElementById("regFuncioBtn").addEventListener("click", function() {
+                    window.location.href = "ModuloInfo.php";
+                });
+
+            </script>
+            
         </div>
     </div>
 
-</body>
-
-
-<?php
-
+    <?php
     include("Includes/Footer.php")
+    ?>
 
-?>
+</body>
 
 </html>
