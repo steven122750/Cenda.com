@@ -46,12 +46,12 @@
                 <input type="date" id="fechaFin" class="form-control" placeholder="Fecha de fin" />
             </div>
             <div class="col-md-4">
-                <button onclick="filterByDate()" class="btn btn-primary">Filtrar por fecha</button>
+                <button onclick="filterByDate()" class="btn btn-primary">Confirmar rango de fechas seleccionas</button>
             </div>
         </div>
 
         <div class="btn-container mt-0.2">
-            <button onclick="tableToExcel('tablaRegistros', 'Registros de pruebas de alcoholemia')" id="exportButton" class="btn btn-primary">Exportar registros a Excel</button>
+        <button onclick="exportToExcelWithFilters()" id="exportButton" class="btn btn-primary">Exportar registros a Excel</button>
         </div>
 
         <div style="max-height: 300px; overflow-y: auto;">

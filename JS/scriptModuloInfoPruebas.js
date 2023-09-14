@@ -1,5 +1,4 @@
 
-
 $(document).ready(function () {
   // Guardar una copia de la tabla original
   var originalTable = $("table").clone();
@@ -36,6 +35,7 @@ $(document).ready(function () {
   });
 });
 
+let filteredRows = []; // Variable global para almacenar las filas filtradas
 
 function filterByDate() {
   // Obtén las fechas de inicio y fin ingresadas por el usuario
@@ -45,19 +45,21 @@ function filterByDate() {
   // Obtiene todas las filas de la tabla
   const rows = document.querySelectorAll("#tablaRegistros tbody tr");
 
-  // Recorre todas las filas y muestra o oculta según el rango de fechas
-  rows.forEach((row) => {
-      const fechaPrueba = row.cells[1].textContent; // La fecha de prueba está en la segunda columna
+  filteredRows = []; // Limpiar las filas filtradas
 
-      if (fechaPrueba >= fechaInicio && fechaPrueba <= fechaFin) {
-          row.style.display = "table-row"; // Muestra la fila
-      } else {
-          row.style.display = "none"; // Oculta la fila
-      }
+  // Filtrar filas según el rango de fechas y almacenarlas en filteredRows
+  rows.forEach((row) => {
+    const fechaPrueba = row.cells[1].textContent; // La fecha de prueba está en la segunda columna
+
+    if (fechaPrueba >= fechaInicio && fechaPrueba <= fechaFin) {
+      filteredRows.push(row); // Almacena la fila filtrada
+      row.style.display = "table-row"; // Muestra la fila
+    } else {
+      row.style.display = "none"; // Oculta la fila que no cumple con el filtro
+    }
   });
 }
 
-    
 var tableToExcel = (function () {
   var uri = 'data:application/vnd.ms-excel;base64,',
     template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
@@ -70,29 +72,37 @@ var tableToExcel = (function () {
       })
     }
 
-  return function (tableId, name, sede) {
+  return function (tableId, name, sede, fechaInicio, fechaFin) {
     var table = document.getElementById(tableId);
     var ctx = { worksheet: name || 'Worksheet', table: '' };
 
     if (table) {
-      if (sede && sede !== "Buscar por sede") {
+      if (sede && sede !== "Buscar por sede" && fechaInicio && fechaFin) {
         var sedeIndex = -1;
+        var fechaIndex = -1;
         var headerRow = $(table).find("thead tr").eq(0);
         headerRow.find("th").each(function (index) {
           if ($(this).text().trim() === "Sede") {
             sedeIndex = index;
-            return false; // Break the loop
+          }
+          if ($(this).text().trim() === "Fecha de prueba") {
+            fechaIndex = index;
           }
         });
 
         var rowsToExport = [];
         var tbodyRows = $(table).find("tbody tr");
         tbodyRows.each(function () {
-          var rowData = $(this).find("td").eq(sedeIndex).text().toLowerCase();
-          if (rowData === sede.toLowerCase()) {
+          var rowDataSede = $(this).find("td").eq(sedeIndex).text().toLowerCase();
+          var rowDataFecha = $(this).find("td").eq(fechaIndex).text();
+          var fechaPrueba = new Date(rowDataFecha);
+
+          if (
+            rowDataSede === sede.toLowerCase() &&
+            fechaPrueba >= new Date(fechaInicio) &&
+            fechaPrueba <= new Date(fechaFin)
+          ) {
             var clonedRow = $(this).clone();
-            // Elimina la columna "Editar datos" de la fila clonada
-            clonedRow.find("td:last-child").remove(); // Elimina la última columna
             rowsToExport.push(clonedRow);
           }
         });
@@ -110,3 +120,11 @@ var tableToExcel = (function () {
     }
   }
 })();
+
+function exportToExcelWithFilters() {
+  var sede = document.getElementById("sedeSelectPruebas").value;
+  var fechaInicio = document.getElementById("fechaInicio").value;
+  var fechaFin = document.getElementById("fechaFin").value;
+
+  tableToExcel('tablaRegistros', 'Registros de pruebas de alcoholemia', sede, fechaInicio, fechaFin);
+}
