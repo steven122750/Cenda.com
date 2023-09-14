@@ -13,35 +13,47 @@
 
 <body>
     <div class="container mt-4">
-        <div class="col-md-12 d-flex align-items-start justify-content-center" style="height: 15vh;">
-            <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 300px;" />
+        <div class="col-md-12 d-flex align-items-start justify-content-center" style="height: 12vh;">
+            <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen"
+                class="img-fluid mb-4" style="max-width: 150px;" />
         </div>
-        <h4 class="mb-4">Pruebas de alcoholemia registradas</h4>
+        <h4 class="mb-2">Pruebas de alcoholemia registradas</h4>
 
         <div class="row">
-
-        <div class="col-md-4">
-                <select class="form-select form-select-lg mb-3" id="sedeSelectPruebas" aria-label=".form-select-lg example">
-                <option value="sede" disabled selected>Selecciona una sede</option>
+            <div class="col-md-4">
+                <select class="form-select mb-3" id="sedeSelectPruebas" aria-label=".form-select-lg example">
+                    <option value="sede" disabled selected>Selecciona una sede</option>
                     <option value="Cenda Armenia">Cenda Armenia</option>
                     <option value="Cenda Buenaventura">Cenda Buenaventura</option>
                     <option value="CDA Quimbaya SAS">CDA Quimbaya SAS</option>
                     <option value="CDA Olmo">CDA Olmo</option>
                 </select>
-         </div>
+            </div>
 
             <div class="col-md-4">
-                <input type="text" id="documentoInput" class="form-control form-control-lg" placeholder="Buscar por documento del funcionario" />
+                <input type="text" id="documentoInput" class="form-control" placeholder="Buscar por documento del funcionario" />
             </div>
             <div class="col-md-4">
-                <input type="text" id="nombreInput" class="form-control form-control-lg" placeholder="Buscar por nombre del funcionario" />
+                <input type="text" id="nombreInput" class="form-control" placeholder="Buscar por nombre del funcionario" />
             </div>
         </div>
 
-        <div class="btn-container mt-0.2"> 
+        <div class="row">
+            <div class="col-md-4">
+                <input type="date" id="fechaInicio" class="form-control" placeholder="Fecha de inicio" />
+            </div>
+            <div class="col-md-4">
+                <input type="date" id="fechaFin" class="form-control" placeholder="Fecha de fin" />
+            </div>
+            <div class="col-md-4">
+                <button onclick="filterByDate()" class="btn btn-primary">Filtrar por fecha</button>
+            </div>
+        </div>
+
+        <div class="btn-container mt-0.2">
             <button onclick="tableToExcel('tablaRegistros', 'Registros de pruebas de alcoholemia')" id="exportButton" class="btn btn-primary">Exportar registros a Excel</button>
         </div>
-        
+
         <div style="max-height: 300px; overflow-y: auto;">
             <table id="tablaRegistros" class="table">
                 <thead class="thead-dark">
@@ -60,13 +72,11 @@
                 </thead>
                 <tbody>
                     <?php
-                        
-                        $query = "SELECT * FROM prueba";
-                        $result= mysqli_query($conn, $query);    
+                    $query = "SELECT * FROM prueba";
+                    $result = mysqli_query($conn, $query);
 
-                        while($row = mysqli_fetch_assoc($result)) { ?>
+                    while ($row = mysqli_fetch_assoc($result)) { ?>
                         <tr>
-                            
                             <td><?php echo $row['sede']; ?></td>
                             <td><?php echo $row['fecha']; ?></td>
                             <td><?php echo $row['numeroPrueba']; ?></td>
@@ -77,32 +87,19 @@
                             <td><?php echo $row['grado']; ?></td>
                             <td><?php echo $row['nombreTomador']; ?></td>
                             <td><?php echo $row['documentoTomador']; ?></td>
-                      
                         </tr>
-                    
                     <?php } ?>
-                    
                 </tbody>
             </table>
         </div>
     </div>
 
-    
-
+    <footer>
+        <script src="JS/scriptModuloInfoPruebas.js"></script>
+        <?php
+        include("Includes/Footer.php");
+        ?>
+    </footer>
 </body>
-
-
-
-<footer>
-
-<script src = "JS/scriptModuloInfoPruebas.js"></script>
-
-<?php
-
-      include("Includes/Footer.php");
-
-  ?>
-</footer>
-
 
 </html>

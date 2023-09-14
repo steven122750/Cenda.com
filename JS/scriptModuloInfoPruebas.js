@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
   // Guardar una copia de la tabla original
   var originalTable = $("table").clone();
@@ -34,6 +36,26 @@ $(document).ready(function () {
   });
 });
 
+
+function filterByDate() {
+  // Obtén las fechas de inicio y fin ingresadas por el usuario
+  const fechaInicio = document.getElementById("fechaInicio").value;
+  const fechaFin = document.getElementById("fechaFin").value;
+
+  // Obtiene todas las filas de la tabla
+  const rows = document.querySelectorAll("#tablaRegistros tbody tr");
+
+  // Recorre todas las filas y muestra o oculta según el rango de fechas
+  rows.forEach((row) => {
+      const fechaPrueba = row.cells[1].textContent; // La fecha de prueba está en la segunda columna
+
+      if (fechaPrueba >= fechaInicio && fechaPrueba <= fechaFin) {
+          row.style.display = "table-row"; // Muestra la fila
+      } else {
+          row.style.display = "none"; // Oculta la fila
+      }
+  });
+}
 
     
 var tableToExcel = (function () {
