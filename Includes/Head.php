@@ -3,13 +3,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cenda Soft</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script src="JS/scriptModuloInfoPruebas.js"></script>
-    <script src="JS/scriptGestionUsuario.js"></script>
-    <script src="JS/scriptRegistro.js"></script>
-    <script src="JS/scriptModuloInfo.js"></script>
-    <script src = "JS/scriptFormPrueba"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/deca82b728.js" crossorigin="anonymous"></script>
@@ -19,10 +14,15 @@
     <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
     <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+   
+   <script src = "JS/scriptModuloInfoPruebas.js"></script>
     <link rel="stylesheet" href="styles.css">
 
-    
 
 
 </head> 

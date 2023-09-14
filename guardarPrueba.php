@@ -2,11 +2,29 @@
 
 include("db.php");
 
+$nombre = '';
+$documento = '';
+$sede = '';
+
+if (isset($_GET['documento'])) {
+    $documento = $_GET['documento'];
+    $query = "SELECT * FROM funcionarios WHERE documento = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 'i', $documento);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_array($result);
+        $nombre = $row['nombre'];
+        $sede = $row['sede'];
+    }
+}
 
 if (isset($_POST['guardarPrueba'])) {
 
     $nombreFuncionario = $_POST['pruebaNombreFuncionario'];
-    $documentoFuncionario = $_POST['pruebaDocumentoFuncionario'];
+    $documentoFuncionario = $_GET['documento'];
 
     $nombreTomador =  $_POST['pruebaNombreTomador'];
     $docTomador = $_POST['pruebaDocTomador'];
@@ -48,9 +66,9 @@ if (isset($_POST['guardarPrueba'])) {
     $result = mysqli_query($conn, $query);
  
     if(!$result){
-     die("Query failed". mysqli_error($conn)); 
+     die("Query failed"); 
     }else{
-     echo "Guardado";
+        header("location: moduloInfo.php");
     }
 }
 
@@ -65,28 +83,27 @@ include("Includes/nav.php");
 <body>
 
 <div class="container d-flex justify-content-center align-items-center vh-50 mt-2"> <!-- Reducí la altura y agregué mt-1 -->
-    <form class="container-form" method="POST" action="guardarPrueba.php" id="formularioResultado">
-        <!-- Personaliza el estilo de los campos de entrada para hacerlos más pequeños -->
-
+    <form class="container-form" action="guardarPrueba.php?documento=<?php echo $_GET['documento']; ?>" method="POST">
+    
         <h5>Registrar prueba de alcoholemia</h5>
 
         <div class="form-group">
-            <input type="text" class="form-control custom-input" name="pruebaNombreFuncionario" placeholder="Nombre del funcionario">
+            <input type="text" class="form-control custom-input" name="pruebaNombreFuncionario" placeholder="Nombre del funcionario" value = "<?php echo $nombre?>" required >
         </div>
         <div class="form-group">
-            <input type="text" class="form-control custom-input" name="pruebaDocumentoFuncionario" placeholder="Documento del funcionario">
+            <input type="text" class="form-control custom-input" name="pruebaDocumentoFuncionario" placeholder="Documento del funcionario" value = "<?php echo $documento?>" required>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control custom-input" name="sedeFuncForm" placeholder="Sede">
+            <input type="text" class="form-control custom-input" name="sedeFuncForm" placeholder="Sede" value = "<?php echo $sede?>"required>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control custom-input" name="pruebaNombreTomador" placeholder="Nombre de quien realiza">
+            <input type="text" class="form-control custom-input" name="pruebaNombreTomador" placeholder="Nombre de quien realiza" required>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control custom-input" name="pruebaDocTomador" placeholder="Documento de quien realiza">
+            <input type="text" class="form-control custom-input" name="pruebaDocTomador" placeholder="Documento de quien realiza" required>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control custom-input" name="numeroPrueba" placeholder="Número de prueba">
+            <input type="text" class="form-control custom-input" name="numeroPrueba" placeholder="Número de prueba" required>
         </div>
         <div class="form-group">
             <div>Resultado de la prueba</div>
@@ -105,7 +122,7 @@ include("Includes/nav.php");
         </div>
 
         <div class="form-group" id="textoAdicional" style="display: none;">
-            <input type="number" class="form-control custom-input" placeholder="Mg de alcohol" name="mg" step="0.01">
+            <input type="number" class="form-control custom-input" placeholder="Mg de alcohol" name="mg" step="0.01"required>
             <label for="gradoAlcohol" id="gradoAlcoholLabel"></label>
             <input type="hidden" id="gradoAlcohol" name="grado" value="Grado de alcohol"> 
         </div>  

@@ -9,8 +9,6 @@
 
   ?>
 
-
-
 <body>
    
     
@@ -22,14 +20,14 @@
 
         
             <div class="form-group">
-                <input type="text" class="form-control form-control-lg" name="nombreFuncionario" aria-describedby="emailHelp" placeholder="Nombres y apellidos" >
+                <input type="text" class="form-control form-control-lg" name="nombreFuncionario" aria-describedby="emailHelp" placeholder="Nombres y apellidos" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control form-control-lg" name="documentoFuncionario" placeholder="Número de documento" >
+                <input type="text" class="form-control form-control-lg" name="documentoFuncionario" placeholder="Número de documento" required>
             </div>
     
             <div class="form-group">
-                <input type="text" class="form-control form-control-lg" name="cargoFuncionario" placeholder="Cargo" >
+                <input type="text" class="form-control form-control-lg" name="cargoFuncionario" placeholder="Cargo" required>
             </div>
     
             <select class="form-select form-select-lg mb-3" name="sedeFuncionario" aria-label=".form-select-lg example">

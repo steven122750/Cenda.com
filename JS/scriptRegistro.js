@@ -74,7 +74,6 @@ function agregarEvento(){
             });
         });
     });
-    
 }
 
 

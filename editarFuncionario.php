@@ -4,6 +4,7 @@ $nombre = '';
 $cargo = '';
 $sede = '';
 
+
 if (isset($_GET['documento'])) {
     $documento = $_GET['documento'];
     $query = "SELECT * FROM funcionarios WHERE documento = ?";
@@ -20,11 +21,12 @@ if (isset($_GET['documento'])) {
     }
 }
 
+
 if (isset($_POST['update'])) {
     $documento = $_GET['documento'];
     $cargo = $_POST['cargo'];
-    $sede = $_POST['sede']; // Use the value from the POST data
-    $nombre = $_POST['nombre']; // Add this line to get the updated nombre
+    $sede = $_POST['sede'];
+    $nombre = $_POST['nombre']; 
 
     $query = "UPDATE funcionarios SET cargo = ?, sede = ?, nombre = ? WHERE documento = ?";
     $stmt = mysqli_prepare($conn, $query);
@@ -39,7 +41,10 @@ if (isset($_POST['update'])) {
 
 ?>
 
-<?php include('includes/Head.php'); ?>
+<?php 
+include('includes/Head.php'); 
+include('includes/nav.php'); 
+?>
 
 <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 89.8vh;">
     <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 300px;" />
@@ -53,7 +58,6 @@ if (isset($_POST['update'])) {
             <input type="text" class="form-control form-control-lg" name="cargo" id="cargo" placeholder="Cargo" value="<?php echo $cargo; ?>">
         </div>
 
-        <!-- Modify your select input to set the selected option based on $sede -->
         <select class="form-select form-select-lg mb-3" name="sede" aria-label=".form-select-lg example">
             <option selected><?php echo $sede; ?></option>
             <option value="Cenda Buenaventura">Cenda Buenaventura</option>

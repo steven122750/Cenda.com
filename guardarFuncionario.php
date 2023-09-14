@@ -1,33 +1,28 @@
 <?php
-
 include("db.php");
-
+session_start();
 
 if (isset($_POST['guardarFuncionario'])) {
-
     $nombreFuncionario = $_POST['nombreFuncionario'];
     $documentoFuncionario = $_POST['documentoFuncionario'];
     $cargoFuncionario = $_POST['cargoFuncionario'];
     $sedeFuncionario = $_POST['sedeFuncionario'];
 
-    $query1 = "SELECT * FROM funcionarios";
-    $result1 = mysqli_query($conn, $query1);    
+    $query = "INSERT INTO funcionarios (documento, nombre, cargo, sede) VALUES ('$documentoFuncionario', '$nombreFuncionario', '$cargoFuncionario', '$sedeFuncionario')";
 
-    $query = "INSERT INTO funcionarios(documento, nombre, cargo, sede) VALUES ('$documentoFuncionario', '$nombreFuncionario', '$cargoFuncionario',
-    '$sedeFuncionario')";
- 
     $result = mysqli_query($conn, $query);
- 
+
     if (!$result) {
-      
+        $_SESSION['message'] = 'Error al guardar al funcionario';
+        $_SESSION['message_type'] = 'warning';
+    } else {
+        $_SESSION['message'] = 'Funcionario guardado con éxito';
+        $_SESSION['message_type'] = 'success';
+    }
 
-    } 
-
-    $_SESSION['message'] = 'Task Saved Successfully';
-    $_SESSION['message_type'] = 'success';
-    header('Location: RegistroUsuario.php');
-    
-
+    header('Location: moduloInfo.php');
+    exit();
+}
 
    /* while($row = mysqli_fetch_assoc($result1)) {
 
@@ -51,7 +46,7 @@ if (isset($_POST['guardarFuncionario'])) {
         }
     } 
     */
-    }
+    
 
 
 ?>
