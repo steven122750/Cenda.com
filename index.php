@@ -8,7 +8,6 @@
       session_start();
      
   ?>
-
   
 
 <script>
@@ -25,7 +24,6 @@
 <body>
 
 
-  
     <section class="vh-100">
         <div class="container-fluid h-custom">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -44,9 +42,6 @@
                         <input type="password" id="form3Example4" class="form-control form-control-lg" placeholder="Contraseña" name = "passAdmin" required/>
                     </div>
             
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a href="recuperarPass.php" class="text-body">Recuperar contraseña</a>
-                    </div>
             
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <button type="submit" name = "btnLoguearAdmin"class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" id="loginbtn">Iniciar sesión</button>

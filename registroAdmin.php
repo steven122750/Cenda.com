@@ -12,7 +12,6 @@
 
 
 <script>
-    // Cierra la alerta después de 5 segundos (5000 ms)
     setTimeout(function () {
         var alertMessage = document.getElementById('alert-message');
         if (alertMessage) {
@@ -21,12 +20,11 @@
     }, 3000); 
 </script>
 
-
 <body>
    
     
-    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 48vh;">
-        <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 120px;" />
+    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 45vh;">
+        <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 100%;" />
         <h2 class="mb-4">Registrar Administrador</h2>
 
         <form style="max-width: 400px; width: 100%;  height: 100px;" method = "POST" action="guardarAdmin.php" >
@@ -57,33 +55,39 @@
             </div>
 
 
-            <?php
+                <?php
 
-                      if (isset($_SESSION['message'])) { ?>
-                          <div id="alert-message" class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
-                              <?= $_SESSION['message'] ?>
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                          </div>
-                      <?php
+                if (isset($_SESSION['message'])) { ?>
+                    <div id="alert-message" class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+                        <?= $_SESSION['message'] ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php
 
-                        // Elimina el mensaje y el tipo de la sesión después de mostrarlo
-                        unset($_SESSION['message']);
-                        unset($_SESSION['message_type']);
-                    }
-            ?>
+                // Elimina el mensaje y el tipo de la sesión después de mostrarlo
+                unset($_SESSION['message']);
+                unset($_SESSION['message_type']);
+                }
+                ?>
 
         </form>
     </div>
     
 </body>
 
+<footer>
+
 <?php
 
-      include("Includes/Footer.php")
+    include("Includes/Footer.php")
 
-    ?>
+?>
+
+</footer>
+
+
 
 </html>
 

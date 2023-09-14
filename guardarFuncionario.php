@@ -13,7 +13,7 @@ if (isset($_POST['guardarFuncionario'])) {
     $result = mysqli_query($conn, $query);
 
     if (!$result) {
-        $_SESSION['message'] = 'Error al guardar al funcionario';
+        $_SESSION['message'] = 'Error, verifica los datos ingresados o verifica si el documento ya esta ingresado';
         $_SESSION['message_type'] = 'warning';
     } else {
         $_SESSION['message'] = 'Funcionario guardado con éxito';

@@ -1,54 +1,5 @@
 
-pasarDatos();
-filtrarTabla();
 agregarEvento();
-
-
-function pasarDatos(){
-    document.addEventListener('DOMContentLoaded', () => {
-        // Obtener todas las filas de la tabla
-        const filas = document.querySelectorAll('tr');
-        
-        // Recorrer cada fila y agregar un controlador de eventos clic
-        filas.forEach(fila => {
-            fila.addEventListener('click', () => {
-                // Obtener los datos de la fila seleccionada
-                const nombre = fila.querySelector('td:nth-child(2)').textContent;
-                const documento = fila.querySelector('td:nth-child(3)').textContent;
-                const sede = fila.querySelector('td:nth-child(1)').textContent;
-    
-                // Actualizar los campos del formulario con los datos
-                document.getElementById('form3Example4').value = nombre;
-                document.getElementById('form3Example3').value = documento;
-                document.getElementById('sedeFuncForm').value = sede;
-
-            });
-        });
-    });
-}
-
-function filtrarTabla() {
-    $(document).ready(function () {
-        $("#documentoInput, #nombreInput, #sedeSelect").on("keyup change", function () {
-            var documentoValue = $("#documentoInput").val().toLowerCase();
-            var nombreValue = $("#nombreInput").val().toLowerCase();
-            var sedeValue = $("#sedeSelect").val().toLowerCase();
-    
-            $("table tbody tr").filter(function () {
-                var documentoText = $(this).find("td:eq(2)").text().toLowerCase();
-                var nombreText = $(this).find("td:eq(1)").text().toLowerCase();
-                var sedeText = $(this).find("td:eq(0)").text().toLowerCase();
-                
-                // Show the row if it matches the search criteria
-                $(this).toggle(
-                    documentoText.indexOf(documentoValue) > -1 &&
-                    nombreText.indexOf(nombreValue) > -1 &&
-                    (sedeValue === "Cenda Armenia" || sedeText.indexOf(sedeValue) > -1)
-                );
-            });
-        });
-    });
-  }
 
 function agregarEvento(){
     document.addEventListener("DOMContentLoaded", function () {

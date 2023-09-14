@@ -1,39 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cenda Soft</title>
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/deca82b728.js" crossorigin="anonymous"></script>
-
-
-    <script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
-    <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
-    <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-   
-   <script src = "JS/scriptModuloInfoPruebas.js"></script>
-    <link rel="stylesheet" href="styles.css">
-
-
-
-</head> 
-
-
-
-
 <?php
 
  
@@ -53,15 +20,15 @@
 
         <div class="row">
 
-          <div class="col-md-4">
-               <select class="form-select form-select-lg mb-3" id="sedeSelectPruebas" aria-label=".form-select-lg example">
-               <option value="Cenda Armenia" disabled selected>Selecciona una sede</option>
-                  <option value="Cenda Armenia">Cenda Armenia</option>
-                   <option value="Cenda Buenaventura">Cenda Buenaventura</option>
-                  <option value="CDA Quimbaya SAS">CDA Quimbaya SAS</option>
-                  <option value="CDA Olmo">CDA Olmo</option>
+        <div class="col-md-4">
+                <select class="form-select form-select-lg mb-3" id="sedeSelectPruebas" aria-label=".form-select-lg example">
+                <option value="sede" disabled selected>Selecciona una sede</option>
+                    <option value="Cenda Armenia">Cenda Armenia</option>
+                    <option value="Cenda Buenaventura">Cenda Buenaventura</option>
+                    <option value="CDA Quimbaya SAS">CDA Quimbaya SAS</option>
+                    <option value="CDA Olmo">CDA Olmo</option>
                 </select>
-          </div>
+         </div>
 
             <div class="col-md-4">
                 <input type="text" id="documentoInput" class="form-control form-control-lg" placeholder="Buscar por documento del funcionario" />
@@ -89,7 +56,6 @@
                         <th scope="col">Grado de alcohol</th>
                         <th scope="col">Nombre de quien toma la prueba</th>
                         <th scope="col">Documento de quien toma la prueba</th>
-                        <th scope="col">Editar datos</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -111,20 +77,9 @@
                             <td><?php echo $row['grado']; ?></td>
                             <td><?php echo $row['nombreTomador']; ?></td>
                             <td><?php echo $row['documentoTomador']; ?></td>
-
-
-
-                            <td>
-                              <a href="editarPrueba.php?numeroPrueba=<?php echo $row['numeroPrueba']?>" class="btn btn-secondary">
-                                <i class="fas fa-marker"></i>
-                              </a>
-          
-                            </td>
-                            
+                      
                         </tr>
-
-
-                        
+                    
                     <?php } ?>
                     
                 </tbody>
@@ -140,13 +95,14 @@
 
 <footer>
 
+<script src = "JS/scriptModuloInfoPruebas.js"></script>
+
 <?php
 
-      include("Includes/Footer.php")
+      include("Includes/Footer.php");
 
   ?>
 </footer>
-
 
 
 </html>

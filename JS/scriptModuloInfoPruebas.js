@@ -1,71 +1,90 @@
+$(document).ready(function () {
+  // Guardar una copia de la tabla original
+  var originalTable = $("table").clone();
 
-crearTablaCompletaPruebas() ;
+  $("#sedeSelectPruebas, #documentoInput, #nombreInput").on("change keyup", function () {
+    var sedeValue = $("#sedeSelectPruebas").val().toLowerCase();
+    var documentoValue = $("#documentoInput").val().toLowerCase();
+    var nombreValue = $("#nombreInput").val().toLowerCase();
 
+    // Clonar la tabla original cada vez que cambian los criterios de búsqueda
+    var clonedTable = originalTable.clone();
 
-function crearTablaCompletaPruebas() {
-  $(document).ready(function () {
+    // Limpiar la tabla clonada de filas anteriores
+    clonedTable.find("tbody tr").remove();
 
-    var tablaCompleta = $("#tablaRegistros").clone();
+    originalTable.find("tbody tr").each(function () {
+      var row = $(this);
+      var sede = row.find("td:eq(0)").text().toLowerCase();
+      var documento = row.find("td:eq(4)").text().toLowerCase();
+      var nombre = row.find("td:eq(3)").text().toLowerCase();
 
-    $("#documentoInput, #nombreInput, #sedeSelect").on("keyup change", function () {
-      var documentoValue = $("#documentoInput").val().toLowerCase();
-      var nombreValue = $("#nombreInput").val().toLowerCase();
-      var sedeValue = $("#sedeSelect").val().toLowerCase();
+      var sedeMatch = sede.includes(sedeValue);
+      var documentoMatch = documento.includes(documentoValue);
+      var nombreMatch = nombre.includes(nombreValue);
 
-      $("#tablaRegistros").remove();
-      $(".table-container").append(tablaCompleta);
-
-      $("table tbody tr").filter(function () {
-        var documentoText = $(this).find("td:eq(4)").text().toLowerCase();
-        var nombreText = $(this).find("td:eq(3)").text().toLowerCase();
-        var sedeText = $(this).find("td:eq(0)").text().toLowerCase();
-
-        var showRow = (
-          documentoText.indexOf(documentoValue) > -1 &&
-          nombreText.indexOf(nombreValue) > -1 &&
-          (sedeValue === "Buscar por sede" || sedeText.indexOf(sedeValue) > -1)
-        );
-
-        if (sedeValue === "Buscar por sede") {
-          showRow = true;
-        }
-
-        $(this).toggle(showRow);
-      });
-    });
-  });
-}
-    
-var tableToExcel = (function() {
-  var uri = 'data:application/vnd.ms-excel;base64,'
-    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
-    , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
-    , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
-  
-  return function(table, name, sede) {
-      if (!table.nodeType) table = document.getElementById(table);
-      var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML};
-  
-      if (sede && sede !== "Buscar por sede") {
-          var sedeIndex = $(table).find("thead th:contains('Sede')").index();
-          var pruebaColumnIndex = $(table).find("thead th:contains('Prueba de alcoholemia')").index();
-          var rowsToExport = [];
-          var headerRow = $(table).find("thead tr").clone();
-          headerRow.find("th:eq(" + pruebaColumnIndex + ")").remove();
-          rowsToExport.push(headerRow[0].outerHTML);
-          $(table).find("tbody tr").each(function() {
-              var rowData = $(this).find("td").eq(sedeIndex).text().toLowerCase();
-              if (rowData === sede.toLowerCase()) {
-                  var dataRow = $(this).clone();
-                  dataRow.find("td:eq(" + pruebaColumnIndex + ")").remove();
-                  rowsToExport.push(dataRow[0].outerHTML);
-              }
-          });
-          ctx.table = rowsToExport.join('');
+      if (sedeMatch && documentoMatch && nombreMatch) {
+        // Agregar la fila que cumple con los criterios al clon
+        clonedTable.find("tbody").append(row.clone());
       }
-      
+    });
+
+    // Reemplazar la tabla original con la tabla clonada
+    $("table").replaceWith(clonedTable);
+  });
+});
+
+
+    
+var tableToExcel = (function () {
+  var uri = 'data:application/vnd.ms-excel;base64,',
+    template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+    base64 = function (s) {
+      return window.btoa(unescape(encodeURIComponent(s)))
+    },
+    format = function (s, c) {
+      return s.replace(/{(\w+)}/g, function (m, p) {
+        return c[p];
+      })
+    }
+
+  return function (tableId, name, sede) {
+    var table = document.getElementById(tableId);
+    var ctx = { worksheet: name || 'Worksheet', table: '' };
+
+    if (table) {
+      if (sede && sede !== "Buscar por sede") {
+        var sedeIndex = -1;
+        var headerRow = $(table).find("thead tr").eq(0);
+        headerRow.find("th").each(function (index) {
+          if ($(this).text().trim() === "Sede") {
+            sedeIndex = index;
+            return false; // Break the loop
+          }
+        });
+
+        var rowsToExport = [];
+        var tbodyRows = $(table).find("tbody tr");
+        tbodyRows.each(function () {
+          var rowData = $(this).find("td").eq(sedeIndex).text().toLowerCase();
+          if (rowData === sede.toLowerCase()) {
+            var clonedRow = $(this).clone();
+            // Elimina la columna "Editar datos" de la fila clonada
+            clonedRow.find("td:last-child").remove(); // Elimina la última columna
+            rowsToExport.push(clonedRow);
+          }
+        });
+
+        // Crear una nueva tabla con las filas seleccionadas
+        var newTable = $("<table></table>").append(headerRow.clone()).append(rowsToExport);
+
+        ctx.table = newTable[0].outerHTML;
+      } else {
+        // Si no se selecciona una sede, exporta toda la tabla
+        ctx.table = table.innerHTML;
+      }
+
       window.location.href = uri + base64(format(template, ctx));
+    }
   }
 })();
-
-  

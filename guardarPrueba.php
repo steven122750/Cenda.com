@@ -6,6 +6,8 @@ $nombre = '';
 $documento = '';
 $sede = '';
 
+session_start();
+
 if (isset($_GET['documento'])) {
     $documento = $_GET['documento'];
     $query = "SELECT * FROM funcionarios WHERE documento = ?";
@@ -66,8 +68,12 @@ if (isset($_POST['guardarPrueba'])) {
     $result = mysqli_query($conn, $query);
  
     if(!$result){
-     die("Query failed"); 
+        $_SESSION['message'] = 'Error, verifica los datos ingresados o revisa si el número de prueba ya está registrado';
+        $_SESSION['message_type'] = 'danger';
+        header("location: moduloInfo.php");
     }else{
+        $_SESSION['message'] = 'Prueba registrada correctamente';
+        $_SESSION['message_type'] = 'success';
         header("location: moduloInfo.php");
     }
 }
@@ -82,7 +88,7 @@ include("Includes/nav.php");
 ?>
 <body>
 
-<div class="container d-flex justify-content-center align-items-center vh-50 mt-2"> <!-- Reducí la altura y agregué mt-1 -->
+<div class="container d-flex justify-content-center align-items-center vh-45 mt-3"> <!-- Reducí la altura y agregué mt-5 -->
     <form class="container-form" action="guardarPrueba.php?documento=<?php echo $_GET['documento']; ?>" method="POST">
     
         <h5>Registrar prueba de alcoholemia</h5>
@@ -121,13 +127,13 @@ include("Includes/nav.php");
             </div>
         </div>
 
-        <div class="form-group" id="textoAdicional" style="display: none;">
-            <input type="number" class="form-control custom-input" placeholder="Mg de alcohol" name="mg" step="0.01"required>
+        <div class="form-group" id="textoAdicional" >
+            <input id = "form3Example5" type="number" class="form-control custom-input" placeholder="Mg de alcohol" name="mg" step="0.01">
             <label for="gradoAlcohol" id="gradoAlcoholLabel"></label>
             <input type="hidden" id="gradoAlcohol" name="grado" value="Grado de alcohol"> 
         </div>  
         
-        <div class="text-center mt-3">
+        <div class="text-center mt-1">
             <button type="submit" id="btnSiguiente" class="btn btn-primary btn-lg" style="width: 100%;" name="guardarPrueba">Registrar</button>
         </div>
     </form>
@@ -137,14 +143,18 @@ include("Includes/nav.php");
 
 </body>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 
 <footer>
-<?php
 
-include("Includes/Footer.php");
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src = "JS/scriptRegistro.js"></script>
 
-?>
+
+    <?php
+
+    include("Includes/Footer.php");
+
+    ?>
+
 </footer>

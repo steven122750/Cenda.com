@@ -1,7 +1,8 @@
 <?php
 
-include("db.php");
 session_start();
+include("db.php");
+
 
 if (isset($_POST['guardarAdmin'])) {
 
@@ -27,12 +28,12 @@ if (isset($_POST['guardarAdmin'])) {
         if (mysqli_stmt_execute($stmt)) {
         
             $_SESSION['message'] = 'Administrador guardado con éxito';
-            $_SESSION['message_type'] = 'sucess';
+            $_SESSION['message_type'] = 'success';
             header("Location: registroAdmin.php");
 
         } else {
             $_SESSION['message'] = 'Error al guardar, revisa la información ingresada';
-            $_SESSION['message_type'] = 'warning';
+            $_SESSION['message_type'] = 'danger';
             header("Location: registroAdmin.php");
         }
         
@@ -42,10 +43,9 @@ if (isset($_POST['guardarAdmin'])) {
 
     }else{
         $_SESSION['message'] = 'Las contraseñas no coincicen';
-        $_SESSION['message_type'] = 'warning';
+        $_SESSION['message_type'] = 'danger';
         header("Location: registroAdmin.php");
     }
-
 
 }
 

@@ -27,13 +27,13 @@ if (isset($_POST["documentoAdmin"]) && isset($_POST["passAdmin"])) {
         } else {
             // Contraseña incorrecta
             $_SESSION['message'] = 'Contraseña incorrecta';
-            $_SESSION['message_type'] = 'warning';
+            $_SESSION['message_type'] = 'danger';
             header("Location: index.php");
         }
     } else {
         // Usuario no registrado
         $_SESSION['message'] = 'No te encuentras registrado';
-        $_SESSION['message_type'] = 'warning';
+        $_SESSION['message_type'] = 'danger';
         header("Location: index.php");
     }
 

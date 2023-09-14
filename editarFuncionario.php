@@ -4,6 +4,8 @@ $nombre = '';
 $cargo = '';
 $sede = '';
 
+session_start();
+
 
 if (isset($_GET['documento'])) {
     $documento = $_GET['documento'];
@@ -34,7 +36,7 @@ if (isset($_POST['update'])) {
     mysqli_stmt_execute($stmt);
 
     $_SESSION['message'] = 'Funcionario actualizado exitosamente';
-    $_SESSION['message_type'] = 'warning';
+    $_SESSION['message_type'] = 'success';
     header('Location: ModuloInfo.php');
     exit(); 
 }
@@ -59,11 +61,15 @@ include('includes/nav.php');
         </div>
 
         <select class="form-select form-select-lg mb-3" name="sede" aria-label=".form-select-lg example">
-            <option selected><?php echo $sede; ?></option>
+            <option value="Cenda Armenia" selected>Cenda Armenia</option>
             <option value="Cenda Buenaventura">Cenda Buenaventura</option>
             <option value="CDA Quimbaya SAS">CDA Quimbaya SAS</option>
             <option value="CDA Olmo">CDA Olmo</option>
         </select>
+
+        <div>
+            <label for="sedeActual">Sede actual: <?php echo $sede; ?> </label>
+        </div>
 
         <div class="form-group d-flex justify-content-center">
             <button type="submit" class="btn btn-primary btn-lg btn-block" name="update">Actualizar datos</button>
