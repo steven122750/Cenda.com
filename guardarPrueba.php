@@ -1,6 +1,7 @@
 <?php
 
 include("db.php");
+include("Includes/sessionSecurity.php");
 
 $nombre = '';
 $documento = '';

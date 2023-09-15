@@ -1,5 +1,6 @@
 <?php
 include("db.php");
+include("Includes/sessionSecurity.php");
 $nombre = '';
 $cargo = '';
 $sede = '';

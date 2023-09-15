@@ -1,6 +1,7 @@
 <?php
 
 include("db.php");
+include("Includes/sessionSecurity.php");
 
 if(isset($_GET['documento'])) {
   $documento = $_GET['documento'];

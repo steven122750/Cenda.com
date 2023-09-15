@@ -31,13 +31,20 @@ height: 100%;
 
 body {
     position: relative;
-}
+    
+    body {
+      background-image: url('https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png');
+      background-repeat: repeat;
+      opacity: 0.5; /* Ajusta el nivel de opacidad según tus preferencias (0 = completamente transparente, 1 = opaco) */
+      /* Otras propiedades de estilo del body si es necesario */
+  }
+  }
+
 
 body::after {
     content: "";
     background-image: url('https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png');
     background-repeat: repeat;
-    background-size: 320px 320px; 
     opacity: 0.05; 
     top: 0;
     left: 0;
@@ -46,6 +53,7 @@ body::after {
     position: absolute;
     pointer-events: none; 
 }
+ 
 
 footer {
     position: fixed;

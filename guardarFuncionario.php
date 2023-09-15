@@ -1,5 +1,6 @@
 <?php
 include("db.php");
+include("Includes/sessionSecurity.php");
 session_start();
 
 if (isset($_POST['guardarFuncionario'])) {
@@ -23,30 +24,6 @@ if (isset($_POST['guardarFuncionario'])) {
     header('Location: moduloInfo.php');
     exit();
 }
-
-   /* while($row = mysqli_fetch_assoc($result1)) {
-
-        $docBd = $row['documento'];
-
-        if($documentoFuncionario!=$docBd){
-
-            $query = "INSERT IN TO funcionarios(documento, nombre, cargo, sede) VALUES ('$documentoFuncionario', '$nombreFuncionario', '$cargoFuncionario',
-            '$sedeFuncionario')";
-         
-            $result = mysqli_query($conn, $query);
-         
-            if(!$result){
-             die("Error");
-            }else{
-                die ("Registrado");
-            }
-
-        }else{
-            echo "El funcionario ya se encuentra registrado";
-        }
-    } 
-    */
-    
 
 
 ?>

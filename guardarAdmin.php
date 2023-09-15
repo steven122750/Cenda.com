@@ -1,7 +1,9 @@
 <?php
 
-session_start();
 include("db.php");
+include("Includes/sessionSecurity.php");
+
+session_start();
 
 
 if (isset($_POST['guardarAdmin'])) {
@@ -17,10 +19,9 @@ if (isset($_POST['guardarAdmin'])) {
     if ($contrasena == $contrasenaConfirm) {
 
 
-        // Genera el hash de la contraseña
+        // Generar el hash de la contraseña
         $hashContraseña = password_hash($contrasena, PASSWORD_DEFAULT);
-
-        // Inserta el nuevo administrador en la base de datos
+        
         $query = "INSERT INTO administradores (documento, correo, nombre, pass) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $query);
         mysqli_stmt_bind_param($stmt, "ssss", $documentoAdmin, $correoAdmin, $nombreAdmin, $hashContraseña);
@@ -28,18 +29,17 @@ if (isset($_POST['guardarAdmin'])) {
         if (mysqli_stmt_execute($stmt)) {
 
             $_SESSION['message'] = 'Administrador guardado con éxito';
-            $_SESSION['message_type'] = 'succeFss';
+            $_SESSION['message_type'] = 'success';
             header("Location: registroAdmin.php");
 
         } else {
-            $_SESSION['message'] = 'Error al guardar, revisa la información ingresada';
+            $_SESSION['message'] = 'Error, revisa los datos ingresados. Puede ser que el correo o el documento ya estén registrados';
             $_SESSION['message_type'] = 'danger';
             header("Location: registroAdmin.php");
         }
 
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-
 
     } else {
         $_SESSION['message'] = 'Las contraseñas no coincicen';

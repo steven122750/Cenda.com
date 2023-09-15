@@ -12,7 +12,7 @@
 <body>
    
     
-    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 77vh;">
+    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 78vh;">
         <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 300px;" />
         <h2 class="mb-4">Registrar funcionario</h2>
         <form style="max-width: 400px; width: 100%;" method = "POST" action="guardarFuncionario.php" >
