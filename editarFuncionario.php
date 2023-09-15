@@ -5,7 +5,7 @@ $nombre = '';
 $cargo = '';
 $sede = '';
 
-session_start();
+
 
 
 if (isset($_GET['documento'])) {

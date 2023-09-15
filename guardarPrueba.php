@@ -7,7 +7,6 @@ $nombre = '';
 $documento = '';
 $sede = '';
 
-session_start();
 
 if (isset($_GET['documento'])) {
     $documento = $_GET['documento'];
@@ -47,6 +46,9 @@ if (isset($_POST['guardarPrueba'])) {
         $grado = 0;
 
     }else{
+
+  
+        if($mg )
         
         if ($mg >= 0 && $mg < 20) {
             $grado = 0;
@@ -61,7 +63,7 @@ if (isset($_POST['guardarPrueba'])) {
         } 
     }
         
-   
+
     $query = "INSERT INTO prueba(numeroPrueba, fecha, nombreFuncionario, documentoFuncionario, resultado, mg, grado, nombreTomador, documentoTomador, sede) 
     VALUES ($numeroPrueba, '$fecha', '$nombreFuncionario', '$documentoFuncionario', '$resultado', $mg, '$grado', '$nombreTomador', '$docTomador', '$sede')";
     
