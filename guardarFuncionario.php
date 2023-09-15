@@ -1,6 +1,6 @@
 <?php
-include("db.php");
 include("Includes/sessionSecurity.php");
+include("db.php");
 session_start();
 
 if (isset($_POST['guardarFuncionario'])) {

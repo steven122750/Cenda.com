@@ -1,18 +1,18 @@
 
 agregarEvento();
 
-function agregarEvento(){
+function agregarEvento() {
     document.addEventListener("DOMContentLoaded", function () {
         // Obtener elementos relevantes
         const btnSiguiente = document.getElementById("btnSiguiente");
         const textoAdicional = document.getElementById("textoAdicional");
         const resultadoPruebaRadios = document.querySelectorAll('input[name="resultadoPrueba"]');
-    
+
         // Agregar evento al botón "Siguiente"
         btnSiguiente.addEventListener("click", function () {
-            
+
         });
-    
+
         // Agregar evento para detectar cambios en los botones de radio
         resultadoPruebaRadios.forEach(function (radio) {
             radio.addEventListener("change", function () {
@@ -29,13 +29,13 @@ function agregarEvento(){
 
 
 // script.js
-$(document).ready(function() {
+$(document).ready(function () {
     // Función para actualizar el label de acuerdo a los mg de alcohol ingresados
     function actualizarLabel() {
         const mgAlcohol = parseFloat($("#form3Example5").val());
 
-        
-        if(mgAlcohol>=0 && mgAlcohol <20){
+
+        if (mgAlcohol >= 0 && mgAlcohol < 20) {
             $("#gradoAlcoholLabel").text("Grado 0: 0mg - 20 mg - 39 mg");
         }
         else if (mgAlcohol >= 20 && mgAlcohol < 40) {

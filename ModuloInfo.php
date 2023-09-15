@@ -3,12 +3,12 @@
 
 <?php
 
-   
-    include("Includes/sessionSecurity.php");
-    Include("Includes/nav.php");
-    Include("Includes/Head.php");
 
-  ?>
+include("Includes/sessionSecurity.php");
+include("Includes/nav.php");
+include("Includes/Head.php");
+
+?>
 
 <?php include("db.php"); ?>
 
@@ -45,34 +45,54 @@ if (isset($_SESSION['message'])) { ?>
 
     <div class="container mt-4">
         <div class="col-md-12 d-flex align-items-start justify-content-center" style="height: 15vh;">
-            <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4" style="max-width: 300px;" />
+            <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen"
+                class="img-fluid mb-4" style="max-width: 300px;" />
         </div>
 
         <h4 class="mb-4">Funcionarios registrados</h4>
 
         <div class="row">
 
+
             <div class="col-md-4">
+
+
                 <select class="form-select form-select-lg mb-3" id="sedeSelect" aria-label=".form-select-lg example">
-                <option value="sede" disabled selected>Selecciona una sede</option>
-                    <option value="Cenda Armenia">Cenda Armenia</option>
-                    <option value="Cenda Buenaventura">Cenda Buenaventura</option>
-                    <option value="CDA Quimbaya SAS">CDA Quimbaya SAS</option>
-                    <option value="CDA Olmo">CDA Olmo</option>
+
+
+                    <option value="Sede" disabled selected>Selecciona una sede</option>
+
+                    <?php
+
+
+                    $query = "SELECT * FROM sede";
+                    $result = mysqli_query($conn, $query);
+
+                    while ($row = mysqli_fetch_assoc($result)) { ?>
+
+                        <option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
+
+                    <?php } ?>
+
                 </select>
+
             </div>
 
             <div class="col-md-4">
-                
-                <input type="text" id="documentoInput" class="form-control form-control-lg" placeholder="Buscar por documento"  />
-                
+
+                <input type="text" id="documentoInput" class="form-control form-control-lg"
+                    placeholder="Buscar por documento" />
+
             </div>
             <div class="col-md-4">
-                <input type="text" id="nombreInput" class="form-control form-control-lg" placeholder="Buscar por nombre" />
+                <input type="text" id="nombreInput" class="form-control form-control-lg"
+                    placeholder="Buscar por nombre" />
             </div>
         </div>
 
-        <button onclick="tableToExcel('tablaRegistros', 'Registros de pruebas de alcoholemia', $('#sedeSelectPruebas').val());" id="exportButton" class="btn btn-primary">Exportar registros a Excel</button>
+        <button
+            onclick="tableToExcel('tablaRegistros', 'Registros de pruebas de alcoholemia', $('#sedeSelectPruebas').val());"
+            id="exportButton" class="btn btn-primary">Exportar registros a Excel</button>
 
 
         <div style="max-height: 300px; overflow-y: auto;">
@@ -87,60 +107,69 @@ if (isset($_SESSION['message'])) { ?>
                     </tr>
                 </thead>
                 <tbody>
-                    
-                <?php
-        $query = "SELECT * FROM funcionarios";
-        $result = mysqli_query($conn, $query);
 
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-                <td><?php echo $row['sede']; ?></td>
-                <td><?php echo $row['nombre']; ?></td>
-                <td><?php echo $row['documento']; ?></td>
-                <td><?php echo $row['cargo']; ?></td>
-                <td>
-                    <a href="editarFuncionario.php?documento=<?php echo $row['documento'] ?>" class="btn btn-secondary">
-                        <i class="fas fa-marker"></i>
-                    </a>
-                    <a href="javascript:void(0);" class="btn btn-danger" onclick="confirmarEliminar(<?php echo $row['documento']; ?>)">
-                        <i class="far fa-trash-alt"></i>
-                    </a>
+                    <?php
+                    $query = "SELECT * FROM funcionarios";
+                    $result = mysqli_query($conn, $query);
 
-                    <a href="guardarPrueba.php?documento=<?php echo $row['documento'] ?>" class="btn btn-secondary">
-                    <i class="fa-regular fa-address-card"></i>
-                    Prueba de alcoholemia
-                    </a>
+                    while ($row = mysqli_fetch_assoc($result)) { ?>
+                        <tr>
+                            <td>
+                                <?php echo $row['sede']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['documento']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['cargo']; ?>
+                            </td>
+                            <td>
+                                <a href="editarFuncionario.php?documento=<?php echo $row['documento'] ?>"
+                                    class="btn btn-secondary">
+                                    <i class="fas fa-marker"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-danger"
+                                    onclick="confirmarEliminar(<?php echo $row['documento']; ?>)">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
 
-                    
-                </td>
-            </tr>
-        <?php } ?>
+                                <a href="guardarPrueba.php?documento=<?php echo $row['documento'] ?>"
+                                    class="btn btn-secondary">
+                                    <i class="fa-regular fa-address-card"></i>
+                                    Prueba de alcoholemia
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
 
                 </tbody>
             </table>
         </div>
-       
+
     </div>
 
     <footer>
 
-    <script src = "JS/scriptModuloInfo.js"></script>
+        <script src="JS/scriptModuloInfo.js"></script>
 
-    <?php
+        <?php
         include("Includes/Footer.php");
-            
-    ?>
+
+        ?>
 
     </footer>
-         
+
     <script>
-    function confirmarEliminar(documento) {
-        if (confirm("¿Estás seguro de que deseas eliminar este funcionario?")) {
-            // Si el usuario confirma, redirecciona a la página de eliminación
-            window.location.href = "eliminarFuncionario.php?documento=" + documento;
+        function confirmarEliminar(documento) {
+            if (confirm("¿Estás seguro de que deseas eliminar este funcionario?")) {
+                // Si el usuario confirma, redirecciona a la página de eliminación
+                window.location.href = "eliminarFuncionario.php?documento=" + documento;
+            }
         }
-    }
-</script>
+    </script>
 
 </body>
 

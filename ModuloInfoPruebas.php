@@ -3,13 +3,40 @@
 
 <?php
 
- 
-  include("db.php");
-  include("Includes/sessionSecurity.php");
-  Include("Includes/nav.php");
 
-  ?>
+include("Includes/sessionSecurity.php");
+include("db.php");
+include("Includes/nav.php");
 
+?>
+
+<?php
+
+if (isset($_SESSION['message'])) { ?>
+    <div id="alert-message"
+        class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show"
+        role="alert">
+        <?= $_SESSION['message'] ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <?php
+
+    unset($_SESSION['message']);
+    unset($_SESSION['message_type']);
+}
+?>
+
+<script>
+    // Cierra la alerta después de 5 segundos (5000 ms)
+    setTimeout(function () {
+        var alertMessage = document.getElementById('alert-message');
+        if (alertMessage) {
+            alertMessage.style.display = 'none';
+        }
+    }, 3000); 
+</script>
 
 <body>
     <div class="container mt-4">
@@ -22,19 +49,32 @@
         <div class="row">
             <div class="col-md-4">
                 <select class="form-select mb-3" id="sedeSelectPruebas" aria-label=".form-select-lg example">
-                    <option value="sede" disabled selected>Selecciona una sede</option>
-                    <option value="Cenda Armenia">Cenda Armenia</option>
-                    <option value="Cenda Buenaventura">Cenda Buenaventura</option>
-                    <option value="CDA Quimbaya SAS">CDA Quimbaya SAS</option>
-                    <option value="CDA Olmo">CDA Olmo</option>
+
+                    <option value="Sede" disabled selected>Selecciona una sede</option>
+
+                    <?php
+
+
+                    $query = "SELECT * FROM sede";
+                    $result = mysqli_query($conn, $query);
+
+                    while ($row = mysqli_fetch_assoc($result)) { ?>
+
+                        <option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
+
+                    <?php } ?>
+
+
                 </select>
             </div>
 
             <div class="col-md-4">
-                <input type="text" id="documentoInput" class="form-control" placeholder="Buscar por documento del funcionario" />
+                <input type="text" id="documentoInput" class="form-control"
+                    placeholder="Buscar por documento del funcionario" />
             </div>
             <div class="col-md-4">
-                <input type="text" id="nombreInput" class="form-control" placeholder="Buscar por nombre del funcionario" />
+                <input type="text" id="nombreInput" class="form-control"
+                    placeholder="Buscar por nombre del funcionario" />
             </div>
         </div>
 
@@ -51,7 +91,8 @@
         </div>
 
         <div class="btn-container mt-0.2">
-        <button onclick="exportToExcelWithFilters()" id="exportButton" class="btn btn-primary">Exportar registros a Excel</button>
+            <button onclick="exportToExcelWithFilters()" id="exportButton" class="btn btn-primary">Exportar registros a
+                Excel</button>
         </div>
 
         <div style="max-height: 300px; overflow-y: auto;">
@@ -68,6 +109,7 @@
                         <th scope="col">Grado de alcohol</th>
                         <th scope="col">Nombre de quien toma la prueba</th>
                         <th scope="col">Documento de quien toma la prueba</th>
+                        <th scope="col">Foto de evidencia</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,16 +119,42 @@
 
                     while ($row = mysqli_fetch_assoc($result)) { ?>
                         <tr>
-                            <td><?php echo $row['sede']; ?></td>
-                            <td><?php echo $row['fecha']; ?></td>
-                            <td><?php echo $row['numeroPrueba']; ?></td>
-                            <td><?php echo $row['nombreFuncionario']; ?></td>
-                            <td><?php echo $row['documentoFuncionario']; ?></td>
-                            <td><?php echo $row['resultado']; ?></td>
-                            <td><?php echo $row['mg']; ?></td>
-                            <td><?php echo $row['grado']; ?></td>
-                            <td><?php echo $row['nombreTomador']; ?></td>
-                            <td><?php echo $row['documentoTomador']; ?></td>
+                            <td>
+                                <?php echo $row['sede']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['fecha']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['numeroPrueba']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['nombreFuncionario']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['documentoFuncionario']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['resultado']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['mg']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['grado']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['nombreTomador']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['documentoTomador']; ?>
+                            </td>
+
+                            <td>
+                                <a href="verFoto.php?documento=<?php echo $row['documentoFuncionario']; ?>" class="btn btn-primary">Ver
+                                    Foto</a>
+                            </td>
+
                         </tr>
                     <?php } ?>
                 </tbody>

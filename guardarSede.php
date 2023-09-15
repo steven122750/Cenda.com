@@ -1,11 +1,12 @@
 <?php
-include("db.php");
 include("Includes/sessionSecurity.php");
+include("db.php");
+
 session_start();
 
 if (isset($_POST['guardarSede'])) {
     $nombreSede = $_POST['nombreSede'];
- 
+
 
     $query = "INSERT INTO sede(nombre) VALUES ('$nombreSede')";
 
@@ -22,4 +23,3 @@ if (isset($_POST['guardarSede'])) {
     header('Location: registroSede.php');
     exit();
 }
-

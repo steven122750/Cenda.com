@@ -1,7 +1,8 @@
 <?php
 
-include("db.php");
 include("Includes/sessionSecurity.php");
+include("db.php");
+
 
 session_start();
 
@@ -21,7 +22,7 @@ if (isset($_POST['guardarAdmin'])) {
 
         // Generar el hash de la contraseña
         $hashContraseña = password_hash($contrasena, PASSWORD_DEFAULT);
-        
+
         $query = "INSERT INTO administradores (documento, correo, nombre, pass) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $query);
         mysqli_stmt_bind_param($stmt, "ssss", $documentoAdmin, $correoAdmin, $nombreAdmin, $hashContraseña);

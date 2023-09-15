@@ -1,18 +1,19 @@
 <?php
-include("db.php");
 include("Includes/sessionSecurity.php");
+include("db.php");
 
-if(isset($_GET['documento'])) {
+
+if (isset($_GET['documento'])) {
 
   $documento = $_GET['documento'];
-  
+
   $query = "DELETE FROM funcionarios WHERE documento = ?";
-  
+
   $stmt = mysqli_prepare($conn, $query);
-  
+
   mysqli_stmt_bind_param($stmt, "s", $documento);
-  
-  if(mysqli_stmt_execute($stmt)) {
+
+  if (mysqli_stmt_execute($stmt)) {
     // Eliminación exitosa
     $_SESSION['message'] = 'Usuario eliminado de la base de datos';
     $_SESSION['message_type'] = 'success';
@@ -21,9 +22,9 @@ if(isset($_GET['documento'])) {
     $_SESSION['message'] = 'Error al eliminar al usuario';
     $_SESSION['message_type'] = 'danger';
   }
-  
+
   mysqli_stmt_close($stmt);
-  
+
   header('Location: moduloInfo.php');
   exit;
 }

@@ -1,112 +1,126 @@
 .divider:after,
 .divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
 }
+
 .h-custom {
-height: calc(100% - 73px);
+  height: calc(100% - 73px);
 }
+
 @media (max-width: 450px) {
-.h-custom {
-height: 100%;
-}
+  .h-custom {
+    height: 100%;
+  }
 }
 
 .input-container {
-    position: relative;
+  position: relative;
 }
 
 .icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 10px; 
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
 }
 
 .text-field {
-    padding-left: 30px; 
+  padding-left: 30px;
 }
 
 
 body::after {
-    content: "";
-    background-image: url('https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png');
-    background-repeat: repeat;
-    opacity: 0.05; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    pointer-events: none; 
+  content: "";
+  background-image: url('https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png');
+  background-repeat: repeat;
+  opacity: 0.05;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
 }
- 
+
 
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 
 .campo-oculto {
-    display: none;
- }
+  display: none;
+}
+
 #textoAdicional {
-     display: none;
+  display: none;
 }
 
 
-  
-  th, td {
-    border: 1px solid #ccc; 
-    padding: 10px; 
-    text-align: center; 
-  }
 
-  .centered-button {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.centered-button {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
 }
 
 
-  .custom-link {
-    font-size: 14px;
-    transition: all 0.3s ease;
-    position: relative; /* Para posicionar la línea */
-  }
-  
-  .custom-link:hover {
-    font-size: 16px;
-    color: #ffc107;
-  }
-  
-  .custom-link::after { /* Pseudo-elemento para la línea */
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px; /* Altura de la línea */
-    background-color: white; /* Color de la línea */
-    transform: scaleX(0); /* Inicialmente, la línea no se ve */
-    transform-origin: center;
-    transition: transform 0.3s ease; /* Animación de la línea */
-  }
-  
-  .custom-link:hover::after {
-    transform: scaleX(1); /* Mostrar la línea al pasar el mouse */
-  }
-  
-
-    
-  .error-border {
-    border: 2px solid red;
+.custom-link {
+  font-size: 14px;
+  transition: all 0.3s ease;
+  position: relative;
+  /* Para posicionar la línea */
 }
-  
-  
-  
-  
+
+.custom-link:hover {
+  font-size: 16px;
+  color: #ffc107;
+}
+
+.custom-link::after {
+  /* Pseudo-elemento para la línea */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  /* Altura de la línea */
+  background-color: white;
+  /* Color de la línea */
+  transform: scaleX(0);
+  /* Inicialmente, la línea no se ve */
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  /* Animación de la línea */
+}
+
+.custom-link:hover::after {
+  transform: scaleX(1);
+  /* Mostrar la línea al pasar el mouse */
+}
+
+
+
+.error-border {
+  border: 2px solid red;
+}
+
+img {
+  max-width: 100%; /* Asegura que la imagen no sea más ancha que el contenedor */
+  max-height: 400px; /* Establece la altura máxima deseada */
+  width: auto; /* La anchura se ajustará automáticamente para mantener la proporción */
+  height: auto; /* La altura se ajustará automáticamente para mantener la proporción */
+}

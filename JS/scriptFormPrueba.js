@@ -1,11 +1,11 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Función para actualizar el label de acuerdo a los mg de alcohol ingresados
     function actualizarLabel() {
         const mgAlcohol = parseFloat($("#form3Example5").val());
 
-        
-        if(mgAlcohol>=0 && mgAlcohol <20){
+
+        if (mgAlcohol >= 0 && mgAlcohol < 20) {
             $("#gradoAlcoholLabel").text("Grado 0: 0mg - 20 mg - 39 mg");
         }
         else if (mgAlcohol >= 20 && mgAlcohol < 40) {
