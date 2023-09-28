@@ -1,5 +1,6 @@
 <?php
-include("db.php");
+Include("db.php");
+
 
 session_start();
 

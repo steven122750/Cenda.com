@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 
+session_start();
 include("Includes/sessionSecurity.php");
 include("Includes/Head.php");
 include("Includes/nav.php");
@@ -10,14 +8,22 @@ include("db.php")
 
     ?>
 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<?php include("Includes/logo.php"); 
+
+?>
 <body>
 
 
-    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 78vh;">
-        <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4"
-            style="max-width: 300px;" />
-        <h2 class="mb-4">Registrar funcionario</h2>
-        <form style="max-width: 400px; width: 100%;" method="POST" action="guardarFuncionario.php">
+    <div class="container d-flex flex-column align-items-center justify-content-center" >
+
+
+
+        <h4 class="mb-3">Registrar funcionario</h>
+        <form style="max-width: 100%; width: 100%;" method="POST" action="guardarFuncionario.php">
 
 
 
@@ -54,7 +60,7 @@ include("db.php")
 
             </select>
 
-            <div class="form-group d-flex justify-content-center">
+            <div class="form-group d-flex justify-content-center btn-submit">
                 <button type="submit" class="btn btn-primary btn-lg btn-block" name="guardarFuncionario">Registrar
                     funcionario</button>
             </div>

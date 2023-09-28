@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 
-
+session_start();
 include("Includes/sessionSecurity.php");
 include("Includes/Head.php");
 include("Includes/nav.php");
 
-
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
 
 
 <?php
@@ -35,18 +34,22 @@ if (isset($_SESSION['message'])) { ?>
     }, 5000); 
 </script>
 
+
+   <?php include("Includes/logo.php"); 
+    
+    
+    ?>
+
 <body>
 
 
     <div class="container d-flex justify-content-center align-items-center vh-20 mt-3">
-        <!-- Reducí la altura y agregué mt-5 -->
+      
 
 
 
         <form class="container-form" action="guardarAdmin.php" method="POST">
 
-            <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen"
-                class="img-fluid mb-4" style="max-width: 300px;" />
 
             <h5>Registrar administrador</h5>
 
@@ -68,7 +71,7 @@ if (isset($_SESSION['message'])) { ?>
                     placeholder="Confirmar contraseña" required>
             </div>
 
-            <div class="form-group d-flex justify-content-center">
+            <div class="form-group d-flex justify-content-center btn-submit">
                 <button type="submit" class="btn btn-primary btn-lg btn-block" name="guardarAdmin">Registrar</button>
             </div>
 

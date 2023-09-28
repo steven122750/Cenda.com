@@ -35,30 +35,30 @@ $(document).ready(function () {
   });
 });
 
-let filteredRows = []; // Variable global para almacenar las filas filtradas
-
 function filterByDate() {
-  // Obtén las fechas de inicio y fin ingresadas por el usuario
-  const fechaInicio = document.getElementById("fechaInicio").value;
-  const fechaFin = document.getElementById("fechaFin").value;
+    // Obtén las fechas de inicio y fin ingresadas por el usuario
+    const fechaInicioInput = new Date(document.getElementById("fechaInicio").value);
+    const fechaFinInput = new Date(document.getElementById("fechaFin").value);
 
-  // Obtiene todas las filas de la tabla
-  const rows = document.querySelectorAll("#tablaRegistros tbody tr");
+    // Obtiene todas las filas de la tabla
+    const rows = document.querySelectorAll("#tablaRegistros tbody tr");
 
-  filteredRows = []; // Limpiar las filas filtradas
+    // Limpiar las filas filtradas
+    let filteredRows = [];
 
-  // Filtrar filas según el rango de fechas y almacenarlas en filteredRows
-  rows.forEach((row) => {
-    const fechaPrueba = row.cells[1].textContent; // La fecha de prueba está en la segunda columna
+    // Filtrar filas según el rango de fechas y almacenarlas en filteredRows
+    rows.forEach((row) => {
+        const fechaPrueba = new Date(row.cells[1].textContent); // La fecha de prueba está en la segunda columna
 
-    if (fechaPrueba >= fechaInicio && fechaPrueba <= fechaFin) {
-      filteredRows.push(row); // Almacena la fila filtrada
-      row.style.display = "table-row"; // Muestra la fila
-    } else {
-      row.style.display = "none"; // Oculta la fila que no cumple con el filtro
-    }
-  });
+        if (fechaPrueba >= fechaInicioInput && fechaPrueba <= fechaFinInput) {
+            filteredRows.push(row); // Almacena la fila filtrada
+            row.style.display = "table-row"; // Muestra la fila
+        } else {
+            row.style.display = "none"; // Oculta la fila que no cumple con el filtro
+        }
+    });
 }
+
 
 var tableToExcel = (function () {
   var uri = 'data:application/vnd.ms-excel;base64,',

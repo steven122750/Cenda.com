@@ -1,12 +1,19 @@
+<?php
+
+session_start();
+include("Includes/sessionSecurity.php");
+include("db.php");
+include("Includes/Head.php");
+include("Includes/nav.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
 
-include("Includes/sessionSecurity.php");
-include("db.php");
-include("Includes/Head.php");
-include("Includes/nav.php");
+
 
 
 ?>
@@ -36,19 +43,18 @@ if (isset($_SESSION['message'])) { ?>
 </script>
 
 <body>
+   <?php include("Includes/logo.php"); 
+    
+    
+    ?>
 
-    <div class="container d-flex justify-content-center align-items-center vh-5 mt-3">
+
+    <div class="container d-flex justify-content-center align-items-center vh-5 mt-3 smaller-container">
         <!-- Centra vertical y horizontalmente el contenido -->
 
         <form class="container-form" action="guardarSede.php" method="POST">
 
-            <div class="form-group">
-                <!-- Envuelve la imagen en un contenedor centrado -->
-                <div class="text-center">
-                    <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen"
-                        class="img-fluid mb-4" style="max-width: 300px;" />
-                </div>
-            </div>
+
 
             <div class="form-group">
                 <input type="text" class="form-control custom-input" name="nombreSede" placeholder="Nombre de la sede"

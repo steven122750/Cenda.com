@@ -1,4 +1,3 @@
-
 crearTablaCompleta();
 
 
@@ -70,4 +69,7 @@ var tableToExcel = (function () {
     window.location.href = uri + base64(format(template, ctx));
   }
 })();
+
+
+
 

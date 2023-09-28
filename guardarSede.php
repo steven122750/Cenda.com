@@ -1,8 +1,9 @@
 <?php
+session_start();
 include("Includes/sessionSecurity.php");
 include("db.php");
 
-session_start();
+
 
 if (isset($_POST['guardarSede'])) {
     $nombreSede = $_POST['nombreSede'];

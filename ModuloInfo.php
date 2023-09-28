@@ -1,14 +1,15 @@
+<?php
+
+session_start();
+include("Includes/sessionSecurity.php");
+include("Includes/nav.php");
+include("Includes/Head.php")
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-
-
-include("Includes/sessionSecurity.php");
-include("Includes/nav.php");
-include("Includes/Head.php");
-
-?>
 
 <?php include("db.php"); ?>
 
@@ -39,15 +40,16 @@ if (isset($_SESSION['message'])) { ?>
     }, 3000); 
 </script>
 
+<?php include("Includes/logo.php"); 
+
+?>
+
 
 <body>
+    
 
+    <div class="container mt-4 smaller-container">
 
-    <div class="container mt-4">
-        <div class="col-md-12 d-flex align-items-start justify-content-center" style="height: 15vh;">
-            <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen"
-                class="img-fluid mb-4" style="max-width: 300px;" />
-        </div>
 
         <h4 class="mb-4">Funcionarios registrados</h4>
 
@@ -91,7 +93,7 @@ if (isset($_SESSION['message'])) { ?>
         </div>
 
         <button
-            onclick="tableToExcel('tablaRegistros', 'Registros de pruebas de alcoholemia', $('#sedeSelectPruebas').val());"
+            onclick="tableToExcel('tablaFuncionariosInfo', 'Registros de pruebas de alcoholemia', $('#sedeSelectPruebas').val());"
             id="exportButton" class="btn btn-primary">Exportar registros a Excel</button>
 
 
@@ -153,12 +155,13 @@ if (isset($_SESSION['message'])) { ?>
 
     <footer>
 
-        <script src="JS/scriptModuloInfo.js"></script>
+   
 
         <?php
         include("Includes/Footer.php");
 
         ?>
+             <script src="JS/scriptModuloInfo.js"></script>
 
     </footer>
 

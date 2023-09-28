@@ -124,3 +124,54 @@ img {
   width: auto; /* La anchura se ajustará automáticamente para mantener la proporción */
   height: auto; /* La altura se ajustará automáticamente para mantener la proporción */
 }
+
+
+/* Estilos para hacer el div y su contenido más pequeños */
+.smaller-container {
+    font-size: 12px; /* Cambia el tamaño de fuente a 12px o ajusta según sea necesario */
+    max-width: 80%; /* Limita el ancho máximo del contenedor para que no ocupe toda la pantalla */
+    margin: 0 auto; /* Centra el contenedor horizontalmente en su contenedor padre */
+}
+
+/* Aplica estilos a los elementos dentro del contenedor si es necesario */
+.smaller-container select,
+.smaller-container input,
+.smaller-container button,
+.smaller-container table {
+    font-size: 12px; /* Cambia el tamaño de fuente a 12px o ajusta según sea necesario para elementos internos */
+}
+
+/* Ajusta el espaciado de celdas en la tabla según sea necesario */
+.smaller-container table th,
+.smaller-container table td {
+    padding: 0.25rem 0.5rem; /* Ajusta el espaciado de celdas según sea necesario */
+}
+
+    .btn-submit {
+        margin-bottom: 50px; /* Puedes ajustar este valor según tus necesidades */
+    }
+    
+    .user-icon-container {
+            width: 200px; /* Aumentar el ancho del div */
+            height: 200px; /* Aumentar la altura del div */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0; /* Color de fondo del div */
+            border-radius: 50%; /* Hacer que el div sea circular */
+        }
+.user-icon {
+            font-size: 80px; /* Aumentar el tamaño del icono */
+            color: #333; /* Cambiar el color del icono */
+        }
+
+        /* Estilos para las barras estadísticas */
+        .progress {
+          height: 20px;
+          background-color: #ccc;
+          border-radius: 5px;
+          margin-top: 5px;
+      }
+      .form-control {
+        text-align: center;
+    }

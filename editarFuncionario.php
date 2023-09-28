@@ -1,6 +1,8 @@
 <?php
+session_start();
 include("Includes/sessionSecurity.php");
 include("db.php");
+include("Includes/Head.php");
 
 $nombre = '';
 $cargo = '';
@@ -34,23 +36,24 @@ if (isset($_POST['update'])) {
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, 'sssi', $cargo, $sede, $nombre, $documento);
     mysqli_stmt_execute($stmt);
-
     $_SESSION['message'] = 'Funcionario actualizado exitosamente';
     $_SESSION['message_type'] = 'success';
-    header('Location: ModuloInfo.php');
+     header('Location: moduloInfo.php');
     exit();
 }
 
 ?>
 
 <?php
-include('includes/Head.php');
+
 include('includes/nav.php');
-?>
+include("Includes/logo.php"); 
+
+
+    ?>
 
 <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 89.8vh;">
-    <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen" class="img-fluid mb-4"
-        style="max-width: 300px;" />
+
     <h2 class="mb-4">Editar datos del funcionario</h2>
     <form style="max-width: 400px; width: 100%;"
         action="editarFuncionario.php?documento=<?php echo $_GET['documento']; ?>" method="POST">

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("Includes/sessionSecurity.php");
 include("db.php");
 
@@ -87,12 +87,13 @@ if (isset($_POST['guardarPrueba'])) {
     if (!$result) {
         $_SESSION['message'] = 'Error, verifica los datos ingresados o revisa si el número de prueba ya está registrado';
         $_SESSION['message_type'] = 'danger';
-        header("location: moduloInfo.php");
+      
     } else {
         $_SESSION['message'] = 'Prueba registrada correctamente';
         $_SESSION['message_type'] = 'success';
-        header("location: moduloInfo.php");
+
     }
+     header("location: moduloInfo.php");
 }
 
 ?>

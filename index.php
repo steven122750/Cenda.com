@@ -1,11 +1,20 @@
+<?php
+
+session_start();
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
 
+session_start();
 include("Includes/Head.php");
 include("db.php");
-session_start();
+
 
 ?>
 
@@ -28,12 +37,15 @@ session_start();
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
 
-                <div class="container d-flex flex-column align-items-center justify-content-center"
-                    style="height: 100vh;">
-                    <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen"
-                        class="img-fluid mb-4" style="max-width: 300px;" />
+                <div class="container d-flex flex-column align-items-center justify-content-center">
+         
+                   <div class="user-icon-container">
+                        <i class="fas fa-user user-icon"></i>
+                    </div>
 
                     <form action="loguearAdmin.php" method="POST">
+                        
+
 
                         <div class="form-outline mb-4">
 
@@ -47,9 +59,9 @@ session_start();
                         </div>
 
 
-                        <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" name="btnLoguearAdmin" class="btn btn-primary btn-lg"
-                                style="padding-left: 2.5rem; padding-right: 2.5rem;" id="loginbtn">Iniciar
+                        <div class="text-center">
+                            <button type="submit" name="btnLoguearAdmin" class="btn btn-primary btn-lg btn-submit"
+                                style="max-width: 100%;id="loginbtn">Iniciar
                                 sesión</button>
 
                         </div>

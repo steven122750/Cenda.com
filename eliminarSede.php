@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("Includes/sessionSecurity.php");
 include("db.php");
 

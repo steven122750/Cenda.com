@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-
 <?php
 
-
+session_start();
 include("Includes/sessionSecurity.php");
 include("db.php");
 include("Includes/nav.php");
-
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+
 
 <?php
 
@@ -39,11 +39,14 @@ if (isset($_SESSION['message'])) { ?>
 </script>
 
 <body>
-    <div class="container mt-4">
-        <div class="col-md-12 d-flex align-items-start justify-content-center" style="height: 12vh;">
-            <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen"
-                class="img-fluid mb-4" style="max-width: 150px;" />
-        </div>
+
+   <?php include("Includes/logo.php"); 
+    
+    
+    ?>
+
+<div class="container mt-3 smaller-container">
+
         <h4 class="mb-2">Pruebas de alcoholemia registradas</h4>
 
         <div class="row">
@@ -80,13 +83,13 @@ if (isset($_SESSION['message'])) { ?>
 
         <div class="row">
             <div class="col-md-4">
-                <input type="date" id="fechaInicio" class="form-control" placeholder="Fecha de inicio" />
+                <input type="date" id="fechaInicio" class="form-control" placeholder="Fecha de inicio"/>
             </div>
             <div class="col-md-4">
                 <input type="date" id="fechaFin" class="form-control" placeholder="Fecha de fin" />
             </div>
             <div class="col-md-4">
-                <button onclick="filterByDate()" class="btn btn-primary">Confirmar rango de fechas seleccionas</button>
+                <button ontouchstart="filterByDate()"onclick="filterByDate()" class="btn btn-primary">Confirmar rango de fechas seleccionas</button>
             </div>
         </div>
 
@@ -151,7 +154,7 @@ if (isset($_SESSION['message'])) { ?>
                             </td>
 
                             <td>
-                                <a href="verFoto.php?documento=<?php echo $row['documentoFuncionario']; ?>" class="btn btn-primary">Ver
+                                <a href="verFoto.php?numeroPrueba=<?php echo $row['numeroPrueba']; ?>" class="btn btn-primary">Ver
                                     Foto</a>
                             </td>
 
@@ -161,6 +164,24 @@ if (isset($_SESSION['message'])) { ?>
             </table>
         </div>
     </div>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener la fecha actual en el formato AAAA-MM-DD
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // Agrega un 0 delante si es necesario
+        var dd = String(today.getDate()).padStart(2, '0'); // Agrega un 0 delante si es necesario
+        var currentDate = yyyy + '-' + mm + '-' + dd;
+
+        // Asignar la fecha actual a los campos de fecha
+        document.getElementById("fechaInicio").value = currentDate;
+        document.getElementById("fechaFin").value = currentDate;
+    });
+</script>
+
+
+
 
     <footer>
         <script src="JS/scriptModuloInfoPruebas.js"></script>

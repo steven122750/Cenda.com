@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("Includes/sessionSecurity.php");
 include("db.php");
 session_start();
@@ -14,15 +15,17 @@ if (isset($_POST['guardarFuncionario'])) {
     $result = mysqli_query($conn, $query);
 
     if (!$result) {
-        $_SESSION['message'] = 'Error, verifica los datos ingresados o verifica si el documento ya esta ingresado';
+        $_SESSION['message'] = 'Error, verifica los datos ingresados o verifica si el documento ya está ingresado';
         $_SESSION['message_type'] = 'warning';
     } else {
         $_SESSION['message'] = 'Funcionario guardado con éxito';
         $_SESSION['message_type'] = 'success';
+         
     }
 
-    header('Location: moduloInfo.php');
-    exit();
+   header('Location: moduloInfo.php');
+   exit();
+
 }
 
 
