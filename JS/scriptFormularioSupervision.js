@@ -1,5 +1,35 @@
+/*
+function cambiarID() {
 
+    var servicio = document.getElementById("selectServicio").value;
+    var valoracion = document.getElementById("valoraciont1");
+    if (servicio == "Particular") {
+        valoracion.id = "valoraciont1";
+    } else if (servicio == "Enseñanza") {
+        valoracion.id = "n/a";
+    }
+    console.log(valoracion.id);
+}
 
+cambiarID();
+*/
+
+$(document).ready(function () {
+    $('.valoracion-select').on('change', function () {
+        var selectedOption = $(this).val();
+        var relatedSelectId = $(this).data('related-select');
+        var relatedSelect = $('#' + relatedSelectId);
+
+        if (selectedOption === 'Ense') {
+            // Si se selecciona "Enseñanza", establece "N/A" y deshabilita el select relacionado
+            relatedSelect.val('N/A');
+            relatedSelect.prop('disabled', true);
+        } else {
+            // Si se selecciona otra opción, habilita el select relacionado
+            relatedSelect.prop('disabled', false);
+        }
+    });
+});
 
 
 function obtenerFechaActual() {
@@ -42,7 +72,7 @@ function actualizarPorcentajes(selects, table, progressBar) {
     const porcentaje = totalUno * porcentajeFila;
 
     progressBar.style.width = porcentaje + "%";
-    progressBar.textContent = porcentaje.toFixed(2) + "%";
+    progressBar.textContent = porcentaje.toFixed(1) + "%";
 
     // Cambia la clase de fondo de la barra de progreso basado en el porcentaje
     if (porcentaje <= 60) {
@@ -124,11 +154,8 @@ function actualizarPorcentajeTotal() {
 
     const porcentajeTotal = (totalSeleccionado / allSelects.length) * 100;
 
-    console.log(allSelects.length);
-    console.log(totalSeleccionado);
-
     totalProgressBar.style.width = porcentajeTotal + "%";
-    totalProgressBar.textContent = porcentajeTotal.toFixed(2) + "%";
+    totalProgressBar.textContent = porcentajeTotal.toFixed(1) + "%";
 
     // Cambia la clase de fondo de la barra de progreso basado en el porcentaje total
     if (porcentajeTotal <= 60) {

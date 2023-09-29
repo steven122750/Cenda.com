@@ -4,26 +4,46 @@
 
 include("Includes/Head.php");
 include("Includes/nav.php");
-include("Includes/logo.php");
-;
+
 
 ?>
 
 <body>
 
 
-
-    <!-- Contenedor principal -->
     <div class="container mt-4">
 
-        <h3 class="text-center">Supervisión en Motocicletas</h3>
+        <div class="row align-items-center justify-content-center" style="background-color: rgba(211, 211, 211, 1.0);">
+            <div class="col-md-3 text-center">
+                <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen"
+                    class="img-fluid mb-6" style="max-width: 120px;" />
+            </div>
+            <div class="col-md-6 text-center">
+                <h5>Supervisión en Motocicletas</h5>
+            </div>
+            <div class="col-md-3 text-center">
+                <label for="version">
+                    <h6>
+                        VERSION: 09
+                    </h6>
+                    <h6>
+                        CODIGO: TH.F.19
+                    </h6>
+                    <h6>
+                        Fecha: 2023-08-01
+                    </h6>
+                </label>
+            </div>
+        </div>
+
+
+
         <form id="form-principal">
-            <button type="button" id="guardar">Exportar a PDF</button>
             <div class="form-row">
                 <!-- Fecha y Placa -->
                 <div class="form-group col-md-3">
                     <label for="fecha">Fecha:</label>
-                    <input type="text" class="form-control" id="fecha" disabled>
+                    <input type="text" class="form-control" id="fecha">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="placa">Placa:</label>
@@ -54,16 +74,21 @@ include("Includes/logo.php");
                 </div>
             </div>
 
-            <!-- Características de la motocicleta -->
-            <h6 class="text-center">Características de la Motocicleta</h6>
+            <div class="row align-items-center justify-content-center"
+                style="background-color: rgba(211, 211, 211, 1.0);">
+                <div class="col-md-12 text-center">
+                    <h6 class="text-center">Características de la Motocicleta</h6>
+                </div>
+            </div>
+
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="servicio">Servicio:</label>
 
                     <select name="selectServicio" id="selectServicio" class="form-control">
 
-                        <option value="Particular">Particular</option>
-                        <option value="Particular">Enseñanza</option>
+                        <option value="part">Particular</option>
+                        <option value="Ense">Enseñanza</option>
 
                     </select>
 
@@ -101,69 +126,124 @@ include("Includes/logo.php");
                     </select>
                 </div>
             </div>
+            <div class="container mt-4 bg-light p-3">
 
-            <!-- Resultado de la Supervisión -->
-            <h6 class="text-center">Resultado de la Supervisión</h6>
-            <div class="form-row">
-                <!-- Resultados con barras de progreso -->
-                <div class="form-group col-md-6">
-                    <label for="inspeccionSensorial">1. Inspección Sensorial: NTC 5375:2012, Numeral 7</label>
-                    <div class="progress">
-                        <div id="progress-bar-sensorial" class="progress-bar bg-success" style="width: 0%;">0%</div>
+
+                <div class="row align-items-center justify-content-center"
+                    style="background-color: rgba(211, 211, 211, 1.0);">
+                    <div class="col-md-12 text-center">
+                        <h6 class="text-center">Resultado de la supervisión</h6>
                     </div>
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label for="sonometria">2. Sonometría</label>
-                    <div class="progress">
-                        <div id="progress-bar-sonometria" class="progress-bar bg-success" style="width: 0%;">0%</div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="inspeccionSensorial">1. Inspección Sensorial: NTC 5375:2012, Numeral 7</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="progress">
+                                <div id="progress-bar-sensorial" class="progress-bar bg-success" style="width: 0%;">0%
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-
-                <div class="form-group col-md-6">
-                    <label for="analisisGases">3. Análisis de Gases NTC 5365:2012</label>
-                    <div class="progress">
-                        <div id="progress-bar-gases" class="progress-bar bg-success" style="width: 0%;">0%</div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="luces">4. Luces NTC 5375:2012, Numeral 7.4.2</label>
-                    <div class="progress">
-                        <div id="progress-bar-luces" class="progress-bar bg-success" style="width: 0%;">0%</div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="frenos">5. Frenos NTC 5375:2012, Numeral 7.6.6</label>
-                    <div class="progress">
-                        <div id="progress-bar-frenos" class="progress-bar bg-success" style="width: 0%;">0%</div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="criteriosEspecificos">6. Criterios Específicos</label>
-                    <div class="progress">
-                        <div id="progress-bar-criterios" class="progress-bar bg-success" style="width: 0%;">0%</div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="sonometria">2. Sonometría</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="progress">
+                                <div id="progress-bar-sonometria" class="progress-bar bg-success" style="width: 0%;">0%
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-
-
-                <div class="form-group col-md-12 text-center">
-                    <!-- Agregamos la clase "text-center" para centrar el contenido -->
-
-
-                    <label for="eficacia">Eficacia</label>
-                    <div class="progress">
-                        <div id="progress-bar-eficacia-total" class="progress-bar bg-success"
-                            style="width: 50%; font-size: 20px;">0%</div>
-                        <!-- Modificamos el estilo para hacerlo más grande -->
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="analisisGases">3. Análisis de Gases NTC 5365:2012</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="progress">
+                                <div id="progress-bar-gases" class="progress-bar bg-success" style="width: 0%;">0%</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="luces">4. Luces NTC 5375:2012, Numeral 7.4.2</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="progress">
+                                <div id="progress-bar-luces" class="progress-bar bg-success" style="width: 0%;">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="frenos">5. Frenos NTC 5375:2012, Numeral 7.6.6</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="progress">
+                                <div id="progress-bar-frenos" class="progress-bar bg-success" style="width: 0%;">0%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="criteriosEspecificos">6. Criterios Específicos</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="progress">
+                                <div id="progress-bar-criterios" class="progress-bar bg-success" style="width: 0%;">0%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="eficacia">Eficacia total</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="progress">
+                                <div id="progress-bar-eficacia-total" class="progress-bar bg-success"
+                                    style="width: 50%; font-size: 20px;">50%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+
+
             <!-- Tabla de Resultados -->
-            <h6 class="text-center">Tabla de Resultados</h6>
+
+            <div class="row align-items-center justify-content-center"
+                style="background-color: rgba(211, 211, 211, 1.0);">
+                <div class="col-md-12 text-center">
+                    <h6 class="text-center">Tabla de resultados</h6>
+                </div>
+            </div>
+
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -189,32 +269,43 @@ include("Includes/logo.php");
             </table>
 
             <!-- Aspectos por Mejorar -->
-            <h6 class="text-center">Aspectos por Mejorar</h6>
+
+
+            <div class="row align-items-center justify-content-center"
+                style="background-color: rgba(211, 211, 211, 1.0);">
+                <div class="col-md-12 text-center">
+                    <h6 class="text-center">Aspectos por mejorar</h6>
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <textarea class="form-control" id="aspectosMejorar" rows="5"></textarea>
             </div>
 
             <!-- Conclusiones de la Supervisión -->
-            <h6 class="text-center">Conclusiones de la Supervisión</h6>
+
+
+            <div class="row align-items-center justify-content-center"
+                style="background-color: rgba(211, 211, 211, 1.0);">
+                <div class="col-md-12 text-center">
+                    <h6 class="text-center">Conclusiones de la Supervisión</h6>
+                </div>
+            </div>
+
             <div class="form-group">
                 <textarea class="form-control" id="conclusiones" rows="5"></textarea>
             </div>
 
-            <div class="container mt-5">
-                <button id="generarFirma" class="btn btn-primary">Generar firma</button>
-                <div id="ventanaFirma" class="mt-3" style="display: none;">
-                    <!-- Área para capturar la firma -->
-                    <canvas id="canvasFirma" width="300" height="150"></canvas>
-                    <!-- Botones para guardar y borrar la firma -->
-                    <div class="mt-3">
-                        <button id="guardarFirma" class="btn btn-success">Guardar firma</button>
-                        <button id="borrarFirma" class="btn btn-danger">Borrar firma</button>
-                    </div>
+            <!-- Confirmación de Cumplimiento de Requisitos -->
+
+            <div class="row align-items-center justify-content-center"
+                style="background-color: rgba(211, 211, 211, 1.0);">
+                <div class="col-md-12 text-center">
+                    <h6 class="text-center">Confirmación de Cumplimiento de Requisitos</h6>
                 </div>
             </div>
 
-            <!-- Confirmación de Cumplimiento de Requisitos -->
-            <h6 class="text-center">Confirmación de Cumplimiento de Requisitos</h6>
             <div class="text-left">
                 <label>Confirme la capacidad que tiene el Inspector de Línea para dar cumplimiento a los requisitos de
                     las NTC para cada
@@ -1737,37 +1828,10 @@ include("Includes/logo.php");
 
 <footer>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="JS/scriptFormularioSupervision.js"></script>
 
-
-
 </footer>
-
-<!-- Incluye la biblioteca jsPDF desde una CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-
-<!-- Tu código JavaScript -->
-<script>
-  // Función para generar el PDF
-  function generatePDF() {
-    // Crea una nueva instancia de jsPDF
-    const pdf = new jsPDF();
-
-    // Captura el contenido de tu página HTML
-    const content = document.documentElement;
-
-    // Convierte el contenido a una imagen base64
-    const imgData = pdf.html(content, {
-      callback: function (pdf) {
-        // Guarda el PDF con un nombre de archivo
-        pdf.save("mi_archivo.pdf");
-      },
-    });
-  }
-
-  // Agrega un controlador de eventos al botón
-  const generatePDFButton = document.getElementById("guardar");
-  generatePDFButton.addEventListener("click", generatePDF);
-</script>
 
 </html>

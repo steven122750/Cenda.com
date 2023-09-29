@@ -182,3 +182,16 @@ img {
       right: 0;
       margin: 20px; /* Ajusta el margen según tus preferencias */
   }
+
+  /* Estilo personalizado para las etiquetas de progreso */
+.progress-label {
+  font-size: 14px;
+  color: #333; /* Color de texto */
+}
+
+/* Estilo personalizado para las barras de progreso */
+.progress-bar {
+  transition: width 0.5s ease-in-out; /* Agregar una transición suave */
+  min-width: 20px; /* Ancho mínimo para evitar un colapso total */
+  font-size: 12px; /* Tamaño de fuente para el texto dentro de la barra */
+}
