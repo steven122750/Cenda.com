@@ -1,4 +1,4 @@
-<html lang="es">
+<html lang="es" id="Form-sup">
 
 <?php
 
@@ -11,15 +11,19 @@ include("Includes/logo.php");
 
 <body>
 
+
+
     <!-- Contenedor principal -->
     <div class="container mt-4">
-        <h6 class="text-center">Supervisión en Motocicletas</h6>
-        <form>
+
+        <h3 class="text-center">Supervisión en Motocicletas</h3>
+        <form id="form-principal">
+            <button type="button" id="guardar">Exportar a PDF</button>
             <div class="form-row">
                 <!-- Fecha y Placa -->
                 <div class="form-group col-md-3">
                     <label for="fecha">Fecha:</label>
-                    <input type="date" class="form-control" id="fecha">
+                    <input type="text" class="form-control" id="fecha" disabled>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="placa">Placa:</label>
@@ -55,19 +59,46 @@ include("Includes/logo.php");
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="servicio">Servicio:</label>
-                    <input type="text" class="form-control" id="servicio" placeholder="Ingrese el servicio">
+
+                    <select name="selectServicio" id="selectServicio" class="form-control">
+
+                        <option value="Particular">Particular</option>
+                        <option value="Particular">Enseñanza</option>
+
+                    </select>
+
+
                 </div>
                 <div class="form-group col-md-3">
                     <label for="motor">Motor:</label>
-                    <input type="text" class="form-control" id="motor" placeholder="Ingrese el motor">
+                    <select name="selectServicio" id="selectServicio" class="form-control">
+
+                        <option value="Particular">2 Tiempos</option>
+                        <option value="Particular">4 Tiempos</option>
+
+                    </select>
+
                 </div>
                 <div class="form-group col-md-3">
                     <label for="cilindraje">Cilindraje:</label>
-                    <input type="text" class="form-control" id="cilindraje" placeholder="Ingrese el cilindraje">
+
+                    <select name="selectServicio" id="selectServicio" class="form-control">
+
+                        <option value="Particular">Menor a 500² cm</option>
+                        <option value="Particular"> Mayor a 500² cm</option>
+
+                    </select>
+
                 </div>
                 <div class="form-group col-md-3">
                     <label for="transmision">Transmisión:</label>
-                    <input type="text" class="form-control" id="transmision" placeholder="Ingrese la transmisión">
+                    <select name="selectServicio" id="selectServicio" class="form-control">
+
+                        <option value="Particular">Mecánica</option>
+                        <option value="Particular">Semi - automática</option>
+                        <option value="Particular">Automática</option>
+
+                    </select>
                 </div>
             </div>
 
@@ -78,45 +109,57 @@ include("Includes/logo.php");
                 <div class="form-group col-md-6">
                     <label for="inspeccionSensorial">1. Inspección Sensorial: NTC 5375:2012, Numeral 7</label>
                     <div class="progress">
-                        <div class="progress-bar bg-success" style="width: 60%;">60%</div>
+                        <div id="progress-bar-sensorial" class="progress-bar bg-success" style="width: 0%;">0%</div>
                     </div>
                 </div>
+
                 <div class="form-group col-md-6">
                     <label for="sonometria">2. Sonometría</label>
                     <div class="progress">
-                        <div class="progress-bar bg-success" style="width: 75%;">75%</div>
+                        <div id="progress-bar-sonometria" class="progress-bar bg-success" style="width: 0%;">0%</div>
                     </div>
                 </div>
+
+
                 <div class="form-group col-md-6">
                     <label for="analisisGases">3. Análisis de Gases NTC 5365:2012</label>
                     <div class="progress">
-                        <div class="progress-bar bg-warning" style="width: 40%;">40%</div>
+                        <div id="progress-bar-gases" class="progress-bar bg-success" style="width: 0%;">0%</div>
                     </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="luces">4. Luces NTC 5375:2012, Numeral 7.4.2</label>
                     <div class="progress">
-                        <div class="progress-bar bg-success" style="width: 90%;">90%</div>
+                        <div id="progress-bar-luces" class="progress-bar bg-success" style="width: 0%;">0%</div>
                     </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="frenos">5. Frenos NTC 5375:2012, Numeral 7.6.6</label>
                     <div class="progress">
-                        <div class="progress-bar bg-warning" style="width: 55%;">55%</div>
+                        <div id="progress-bar-frenos" class="progress-bar bg-success" style="width: 0%;">0%</div>
                     </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="criteriosEspecificos">6. Criterios Específicos</label>
                     <div class="progress">
-                        <div class="progress-bar bg-success" style="width: 80%;">80%</div>
+                        <div id="progress-bar-criterios" class="progress-bar bg-success" style="width: 0%;">0%</div>
                     </div>
                 </div>
-                <div class="form-group col-md-6">
+
+
+
+                <div class="form-group col-md-12 text-center">
+                    <!-- Agregamos la clase "text-center" para centrar el contenido -->
+
+
                     <label for="eficacia">Eficacia</label>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" style="width: 0%;">0%</div>
+                        <div id="progress-bar-eficacia-total" class="progress-bar bg-success"
+                            style="width: 50%; font-size: 20px;">0%</div>
+                        <!-- Modificamos el estilo para hacerlo más grande -->
                     </div>
                 </div>
+
             </div>
 
             <!-- Tabla de Resultados -->
@@ -157,6 +200,19 @@ include("Includes/logo.php");
                 <textarea class="form-control" id="conclusiones" rows="5"></textarea>
             </div>
 
+            <div class="container mt-5">
+                <button id="generarFirma" class="btn btn-primary">Generar firma</button>
+                <div id="ventanaFirma" class="mt-3" style="display: none;">
+                    <!-- Área para capturar la firma -->
+                    <canvas id="canvasFirma" width="300" height="150"></canvas>
+                    <!-- Botones para guardar y borrar la firma -->
+                    <div class="mt-3">
+                        <button id="guardarFirma" class="btn btn-success">Guardar firma</button>
+                        <button id="borrarFirma" class="btn btn-danger">Borrar firma</button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Confirmación de Cumplimiento de Requisitos -->
             <h6 class="text-center">Confirmación de Cumplimiento de Requisitos</h6>
             <div class="text-left">
@@ -188,7 +244,7 @@ include("Includes/logo.php");
                     lo tanto se diligenciara "N/A" en la columna Valoracion.</label>
             </div>
 
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="sensorial">
                 <thead class="thead-dark">
                     <tr>
                         <th>NTC 5375:2012
@@ -208,7 +264,7 @@ include("Includes/logo.php");
                         <td>Fijación defectuosa con riesgo de desprendimiento en cualquiera de los elementos de la
                             dirección.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion1-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -220,7 +276,7 @@ include("Includes/logo.php");
                         <td>Con la motocicleta apagada: Carrera o movimiento de los dispositivos de accionamiento del
                             sistema de freno sean excesivos o insuficientes</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion2-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -232,7 +288,7 @@ include("Includes/logo.php");
                         <td>Con la motocicleta apagada: Retorno inadecuado del pedal / palanca del freno trasero y/o
                             delantero</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion3-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -243,7 +299,7 @@ include("Includes/logo.php");
                         <td>4</td>
                         <td>Con la motocicleta apagada: Inoperancia total del freno en alguna de las ruedas</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion4-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -254,7 +310,7 @@ include("Includes/logo.php");
                         <td>5</td>
                         <td>Cantidad de líquido de frenos por fuera de los niveles indicados</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion5-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -265,7 +321,7 @@ include("Includes/logo.php");
                         <td>6</td>
                         <td>Mal estado de las fijaciones al chasis de los elementos de la suspensión</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion6-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -276,7 +332,7 @@ include("Includes/logo.php");
                         <td>7</td>
                         <td>Roce o interferencia entre las llantas y el guardabarros, chasis o suspensión</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion7-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -287,7 +343,7 @@ include("Includes/logo.php");
                         <td>8</td>
                         <td>Falta alguna de las tuercas, en cualquier rueda de la motocicleta</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion8-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -298,7 +354,7 @@ include("Includes/logo.php");
                         <td>9</td>
                         <td>Deformaciones en cualquiera de los rines</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion9-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -309,7 +365,7 @@ include("Includes/logo.php");
                         <td>10</td>
                         <td>Fisuras en cualquiera de los rines</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion10-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -320,7 +376,7 @@ include("Includes/logo.php");
                         <td>11</td>
                         <td>Despegue o rotura en las bandas laterales de una ó más llantas</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion11-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -332,7 +388,7 @@ include("Includes/logo.php");
                         <td>Protuberancias, deformaciones, despegue o rotura en la banda de rodamiento de una ó más
                             llantas</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion12-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -344,19 +400,21 @@ include("Includes/logo.php");
                         <td>Profundidad de labrado en el área de mayor desgaste de cualquiera de las llantas de
                             servicio, menor a 1 mm. ó inferior a las marcas especificadas por los fabricantes</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
                         </td>
                     </tr>
+
+
                     <tr>
                         <td>Sistema de frenos</td>
                         <td>14</td>
                         <td>Fundas, cables, Guayas o varillas deterioradas con riesgo de desprendimiento o interferencia
                             con otros elementos</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion14-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -368,18 +426,20 @@ include("Includes/logo.php");
                         <td>Cilindro maestro (bomba de freno) deteriorado, con fuga de líquido o con riesgo de
                             desprendimiento</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion15-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
                         </td>
                     </tr>
+
+
                     <tr>
                         <td>Sistema de frenos</td>
                         <td>16</td>
                         <td>Ausencia de la tapa del depósito de líquido de frenos</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion16-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -390,7 +450,7 @@ include("Includes/logo.php");
                         <td>17</td>
                         <td>Pérdida de líquido en tubos, mangueras o en las conexiones</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion17-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -402,7 +462,7 @@ include("Includes/logo.php");
                         <td>Tubos o mangueras deteriorados, dañados, deformados o excesivamente corroídos o con riesgo
                             de desprendimiento</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion18-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -413,12 +473,13 @@ include("Includes/logo.php");
                         <td>19</td>
                         <td>Mordazas de freno con fugas visibles o con riesgo de desprendimiento (faltan tornillos)</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion19-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
                         </td>
                     </tr>
+
                     <tr>
                         <td>Sistema de frenos</td>
                         <td>20</td>
@@ -426,7 +487,7 @@ include("Includes/logo.php");
                             para impartir enseñanza. Lo anterior de acuerdo al metodo e instrucciones establecidas por
                             el CDA en los instructivos de RTM</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion20-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -438,7 +499,7 @@ include("Includes/logo.php");
                         <td>Partes exteriores en mal estado (flojas sueltas), que presenten peligro para los demás
                             usuarios de la vía </td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion21-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -449,7 +510,7 @@ include("Includes/logo.php");
                         <td>22</td>
                         <td>Presencia de aristas o bordes cortantes exteriores en el vehículo</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion22-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -460,7 +521,7 @@ include("Includes/logo.php");
                         <td>23</td>
                         <td>Corrosión exterior en elementos diferentes al chasis</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion23-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -471,7 +532,7 @@ include("Includes/logo.php");
                         <td>24</td>
                         <td>Corrosión en chasis</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion24-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -485,7 +546,7 @@ include("Includes/logo.php");
                             cual no debe considerarse defecto.
                         </td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion25-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -496,7 +557,7 @@ include("Includes/logo.php");
                         <td>26</td>
                         <td>Escape o silenciador en mal estado o salida directa</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion26-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -509,7 +570,7 @@ include("Includes/logo.php");
                         <td>Existencia de algún tipo de dispositivo o accesorio diseñado para producir ruido o
                             motocicletas sin silenciador</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion27-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -520,7 +581,7 @@ include("Includes/logo.php");
                         <td>28</td>
                         <td>La inexistencia de cualquiera de los dos espejos retrovisores funcionales</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion28-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -531,7 +592,7 @@ include("Includes/logo.php");
                         <td>29</td>
                         <td>Mal estado o fijación deficiente del (los) espejo (s) retrovisor (es)</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion29-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -542,7 +603,7 @@ include("Includes/logo.php");
                         <td>30</td>
                         <td>Sillín y/o reposapiés mal anclados o con riesgo de desprendimiento</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion30-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -553,7 +614,7 @@ include("Includes/logo.php");
                         <td>31</td>
                         <td>La inexistencia o el mal funcionamiento de(l) los soporte (s) de estacionamiento</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion31-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -564,7 +625,7 @@ include("Includes/logo.php");
                         <td>32</td>
                         <td>Mal estado de las fijaciones al chasis de los elementos de la suspensión</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion32-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -576,7 +637,7 @@ include("Includes/logo.php");
                         <td>Elementos de la suspensión en mal estado (amortiguadores, rodamientos, bujes de
                             amortiguadores, bujes de tijera, pasador) deformados, con juegos excesivos o corrosión</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion33-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -587,7 +648,7 @@ include("Includes/logo.php");
                         <td>34</td>
                         <td>Inexistencia de alguno de los amortiguadores</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion34-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -598,7 +659,7 @@ include("Includes/logo.php");
                         <td>35</td>
                         <td>Fugas visibles en los amortiguadores</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion35-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -609,7 +670,7 @@ include("Includes/logo.php");
                         <td>36</td>
                         <td>Perdidas de aceite sin goteo continuo</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion36-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -620,7 +681,7 @@ include("Includes/logo.php");
                         <td>37</td>
                         <td>Perdidas de aceite con goteo continuo</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion37-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -631,7 +692,7 @@ include("Includes/logo.php");
                         <td>38</td>
                         <td>Mal estado del cableado eléctrico</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion38-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -642,7 +703,7 @@ include("Includes/logo.php");
                         <td>39</td>
                         <td>Fugas en el sistema de refrigeración cuando aplique</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion39-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -652,7 +713,7 @@ include("Includes/logo.php");
                         <td>40</td>
                         <td>El no funcionamiento o inexistencia de los comandos que encienden o conmutan las luces</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion40-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -664,7 +725,7 @@ include("Includes/logo.php");
                         <td>Mal estado (con riesgo de desprendimiento o ausencia de las pastas o vidrios) o no
                             funcionamiento del sistema o cualquiera de las direccionales</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion41-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -676,7 +737,7 @@ include("Includes/logo.php");
                         <td>Mal estado (con riesgo de desprendimiento o ausencia de las pastas o vidrios) o (el) no
                             funcionamiento de cualquiera de la (s) luz (luces) de parada o freno</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion42-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -687,7 +748,7 @@ include("Includes/logo.php");
                         <td>43</td>
                         <td>Mal estado o el no funcionamiento de las luces de tablero de instrumentos</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion43-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -699,7 +760,7 @@ include("Includes/logo.php");
                         <td>Color de luz emitido diferente o en cantidad inferior a la estipulada en las normas técnicas
                             Colombianas o disposiciones legales aplicables vigentes</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion44-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -710,7 +771,7 @@ include("Includes/logo.php");
                         <td>45</td>
                         <td>El no funcionamiento o inexistencia de la bocina, pito o dispositivo acústico</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion45-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -721,7 +782,7 @@ include("Includes/logo.php");
                         <td>46</td>
                         <td>El Inspector de Linea, Utiliza apropiadamente el elevador</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion46-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -733,7 +794,7 @@ include("Includes/logo.php");
                         <td>El Inspector de Linea, Utiliza los elementos de proteccion personal durante la inspeccion
                             sensorial</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion47-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -745,7 +806,7 @@ include("Includes/logo.php");
                         <td>El Inspector de Linea, realiza la inspección de la motocicleta utilizando y registrando los
                             defectos encontrados en la lista de chequeo</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion48-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -758,7 +819,7 @@ include("Includes/logo.php");
                             apagada, siguiendo el método establecido en el Instructivo de Inspección sensorial. Utiliza
                             adecuadamente el profundímetro.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion49-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -771,7 +832,7 @@ include("Includes/logo.php");
                             observaciones pertinentes y registra fielmente la información detectada, en el software,
                             Anexar copia del FUR.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion50-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -785,7 +846,7 @@ include("Includes/logo.php");
                             relaciona cada uno de estos componentes con los defectos establecidos en la Norma Técnica
                             Colombiana NTC 5375:2012.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion51-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -800,7 +861,7 @@ include("Includes/logo.php");
                             Emergencia, Fuerzas Militares, Policía, Autoridades de Tránsito y Transporte, según lo
                             establecido en la Ley 769 de 2002 "Código Nacional de Tránsito, Artículo 104.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion52-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -813,7 +874,7 @@ include("Includes/logo.php");
                             utilizados para impartir enseñanza automovilística, según lo establecido en el Anexo A de la
                             Norma Técnica Colombiana NTC 5375:2012</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion53-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -826,7 +887,7 @@ include("Includes/logo.php");
                             en la NTC 5375:2012. Corrosión, Inspección Sensorial, Resonador, Silenciador entre otras
                         </td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion54-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -839,7 +900,7 @@ include("Includes/logo.php");
                             la inspección de los items, las características y el tipo de motocicleta, así como del
                             resultado de la unificación de criterios realizada por el CDA.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion55-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -851,7 +912,7 @@ include("Includes/logo.php");
                         <td>El Inspector de Linea, posee y demuestra conocimiento satisfactorio del funcionamiento y la
                             tecnología empleada para la fabricación del item inspeccionado.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion56-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -863,7 +924,7 @@ include("Includes/logo.php");
                         <td>El Inspector de Linea, identifica las desviaciones encontradas durante la inspección de la
                             motocicleta con respecto a lo establecido en la Norma Técnica Colombiana 5375:2012</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion57-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -875,7 +936,7 @@ include("Includes/logo.php");
                         <td>El Inspector de Linea, posee y demuestra conocimiento satisfactorio sobre el control de
                             tracción en motocicletas</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion58-t1" class="form-control" id="valoraciont1">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -886,7 +947,7 @@ include("Includes/logo.php");
 
 
 
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="sonometria">
                 <thead class="thead-dark">
                     <tr>
                         <th></th>
@@ -906,7 +967,7 @@ include("Includes/logo.php");
                             automáticas
                         </td>
                         <td>
-                            <select name="valoracion_1" class="form-control">
+                            <select name="valoracion1t2" class="form-control" id="valoraciont2">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -917,7 +978,7 @@ include("Includes/logo.php");
                         <td>2</td>
                         <td>Ubica el sonómetro a una altura mínima de 20 cm</td>
                         <td>
-                            <select name="valoracion_2" class="form-control">
+                            <select name="valoracion2t2" class="form-control" id="valoraciont2">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -930,7 +991,7 @@ include("Includes/logo.php");
                             tubo
                             de escape</td>
                         <td>
-                            <select name="valoracion_3" class="form-control">
+                            <select name="valoracion3t2" class="form-control" id="valoraciont2">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -941,7 +1002,7 @@ include("Includes/logo.php");
                         <td>4</td>
                         <td>Realiza una sola medición independientemente de las salidas de escape de la motocicleta</td>
                         <td>
-                            <select name="valoracion_4" class="form-control">
+                            <select name="valoracion4t2" class="form-control" id="valoraciont2">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -952,7 +1013,7 @@ include("Includes/logo.php");
                         <td>5</td>
                         <td>Ejecuta la prueba, siguiendo las indicaciones del Software</td>
                         <td>
-                            <select name="valoracion_5" class="form-control">
+                            <select name="valoracion5t2" class="form-control" id="valoraciont2">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -963,9 +1024,7 @@ include("Includes/logo.php");
 
 
 
-
-
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="gases">
                 <thead class="thead-dark">
                     <tr>
                         <th>NTC 5365:2012+A155:K176</th>
@@ -983,7 +1042,7 @@ include("Includes/logo.php");
                             Temperatura, Sensor de velocidad de giro, Sensor de Temperatura Ambiente y Sensor de Humedad
                             Relativa)</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -996,7 +1055,7 @@ include("Includes/logo.php");
                             entre
                             5 ºC y 55 ºC, HR entre 30% y 90%</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_2">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1010,7 +1069,7 @@ include("Includes/logo.php");
                             el vehículo automotor se encuentre sobre el soporte central en el caso de transmisiones
                             automáticas</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_3">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1021,7 +1080,7 @@ include("Includes/logo.php");
                         <td>4</td>
                         <td>Enciende las luces y comprueba que cualquier otro equipo eléctrico esté apagado.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_4">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1032,7 +1091,7 @@ include("Includes/logo.php");
                         <td>5</td>
                         <td>Verifica que el control manual de choque (ahogador) debe estar en posición de apagado.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_5">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1045,7 +1104,7 @@ include("Includes/logo.php");
                             silenciador
                             del sistema de escape del vehículo</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_6">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1057,7 +1116,7 @@ include("Includes/logo.php");
                         <td>Verifica que no se presenten salidas adicionales en el sistema de escape diferentes a las de
                             diseño original del vehículo.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_7">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1068,7 +1127,7 @@ include("Includes/logo.php");
                         <td>8</td>
                         <td>Verifica que no se presente ausencia de tapones de aceite o fugas en el mismo.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_8">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1079,7 +1138,7 @@ include("Includes/logo.php");
                         <td>9</td>
                         <td>Verifica que no se presenten ausencia de tapas de combustible</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_9">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1092,7 +1151,7 @@ include("Includes/logo.php");
                             garantiza la
                             temperatura mínima de operación del motor de la motocicleta.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_10">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1106,7 +1165,7 @@ include("Includes/logo.php");
                             Scooter, cuando el motor se ha mantenido encendido por al menos 10 minutos. En este caso, el
                             Inspector de Linea usa el cronómetro para garantizar dicha condición</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_11">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1121,7 +1180,7 @@ include("Includes/logo.php");
                             número
                             de cilindros del motor y su sistema de encendido.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_12">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1137,7 +1196,7 @@ include("Includes/logo.php");
                             tubo de escape y verifica que en vehículos cuatro tiempos no se presenten emisiones de humo
                             negro o azul.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_13">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1150,7 +1209,7 @@ include("Includes/logo.php");
                             posible,
                             se debe Instalar el(los) acople (s) en el (los) tubo (s) de escape.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_14">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1164,7 +1223,7 @@ include("Includes/logo.php");
                             tubo
                             de escape.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_15">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1177,7 +1236,7 @@ include("Includes/logo.php");
                             4.2
                             de la Norma Técnica Colombiana NTC 5365 de 2012</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_16">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1190,7 +1249,7 @@ include("Includes/logo.php");
                             de
                             evaluación de gases de escape de la motocicleta</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_17">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1204,7 +1263,7 @@ include("Includes/logo.php");
                             Técnica
                             Colombiana 5365:2012.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_18">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1217,7 +1276,7 @@ include("Includes/logo.php");
                             periódica del Analizador de Gases, así como los intervalos o periodos en los cuales debe
                             realizarse la misma.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_19">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1230,7 +1289,7 @@ include("Includes/logo.php");
                             de
                             la motocicleta, según lo establecido en el Anexo C de la 5365:2012.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_20">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1245,7 +1304,7 @@ include("Includes/logo.php");
                             lo
                             dispuesto en la NTC 5365:2012 y las disposiciones reglamentarias vigentes.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_21">
+                            <select name="valoracion" class="form-control" id="valoraciont3">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1257,8 +1316,7 @@ include("Includes/logo.php");
 
 
 
-
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="luces">
                 <thead class="thead-dark">
                     <tr>
                         <th>NTC 5375:2012, Numeral 7.4.2</th>
@@ -1277,7 +1335,7 @@ include("Includes/logo.php");
                         <td>Ubica y asegura la motocicleta en el sistema de apoyo en el área designada para la
                             realización de la prueba de luces de la motocicleta.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1290,7 +1348,7 @@ include("Includes/logo.php");
                         <td>Garantiza que la motocicleta se encuentre a nivel del piso para la determinación de la
                             intensidad e inclinación en la prueba de luces de la motocicleta.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_2">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1304,7 +1362,7 @@ include("Includes/logo.php");
                             mando que enciende y conmuta las luces y confronta con lo reflejado en la farola(s) de la
                             motocicleta.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_3">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1319,7 +1377,7 @@ include("Includes/logo.php");
                             referencia (DOT, EU). Así mismo utiliza dicha información y el haz de luz proyectado al
                             interior del luxómetro para determinar el tipo de haz de luz de la motocicleta.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_4">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1333,7 +1391,7 @@ include("Includes/logo.php");
                             luces de la motocicleta de acuerdo a la cantidad de luces bajas con que cuenta la misma.
                         </td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_5">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1346,7 +1404,7 @@ include("Includes/logo.php");
                         <td>Garantiza que la distancia del luxómetro con respecto a la farola de la motocicleta se
                             encuentre entre 30 y 50 Cm. Condiciones establecidas por el fabricante del luxómetro.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_6">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1359,7 +1417,7 @@ include("Includes/logo.php");
                         <td>Realiza el ajuste de paralelismo, comprobando que la luz del láser superior (o espejo) esté
                             apuntando a dos puntos simétricos, con relación al eje central de la motocicleta.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_7">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1372,7 +1430,7 @@ include("Includes/logo.php");
                         <td>Verifica y/o ajusta el nivel ubicado al interior del luxómetro, de tal forma que este, se
                             encuentre justo en el centro.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_8">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1386,7 +1444,7 @@ include("Includes/logo.php");
                             referencia de la farola (cuando aplique) o en su defecto al centro del bombillo de luces
                             bajas.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_9">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1399,7 +1457,7 @@ include("Includes/logo.php");
                         <td>Garantiza que la motocicleta se encuentre encendida, así mismo verifica que el mando que
                             enciende las luces se encuentre en posición de luces bajas.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_10">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1412,7 +1470,7 @@ include("Includes/logo.php");
                         <td>Realiza una aceleración de la motocicleta hasta alcanzar la mayor intensidad del haz de luz.
                         </td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_11">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1426,7 +1484,7 @@ include("Includes/logo.php");
                             su vez determina la inclinación de acuerdo al tipo de haz de luz identificado y lo
                             establecido por el Proveedor de Software de RTM.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_12">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1439,7 +1497,7 @@ include("Includes/logo.php");
                         <td>Realiza la medición de la desviación del haz de luz en posición bajas, siguiendo las
                             instrucciones del fabricante del Luxómetro y las indicaciones del software de RTM.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_13">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1452,7 +1510,7 @@ include("Includes/logo.php");
                         <td>Posee conocimiento claro y preciso sobre las definiciones establecidas en la NTC 5375:2012.
                             Luces Altas, Luces Bajas, Inclinación, Intensidad.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_14">
+                            <select name="valoracion" class="form-control" id="valoraciont4">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1465,7 +1523,7 @@ include("Includes/logo.php");
 
 
 
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="frenos">
                 <thead class="thead-dark">
                     <tr>
                         <th>NTC 5375:2012, Numeral 7.6.6</th>
@@ -1481,7 +1539,7 @@ include("Includes/logo.php");
                         <td>1</td>
                         <td>Ubica la motocicleta sobre el Frenómetro de manera cuidadosa y segura.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion" class="form-control" id="valoraciont5">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1493,7 +1551,7 @@ include("Includes/logo.php");
                         <td>Ingresa al módulo de frenos, selecciona la placa e indica la información al aplicativo
                             correctamente (Indica si la Profundidad adecuada de las llantas es correcta).</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_2">
+                            <select name="valoracion" class="form-control" id="valoraciont5">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1505,7 +1563,7 @@ include("Includes/logo.php");
                         <td>Realiza la medición de la eficacia de frenado con la motocicleta apagada y siguiendo las
                             indicaciones del software.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_3">
+                            <select name="valoracion" class="form-control" id="valoraciont5">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1519,7 +1577,7 @@ include("Includes/logo.php");
                             documento RTM.I.06 Instructivo Prueba De Frenos En Motocicletas, con el fin de establecer su
                             mal funcionamiento.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_4">
+                            <select name="valoracion" class="form-control" id="valoraciont5">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1532,7 +1590,7 @@ include("Includes/logo.php");
                             Inspector de Linea conoce y realiza la prueba de acuerdo al método establecido por el CDA.
                         </td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_5">
+                            <select name="valoracion" class="form-control" id="valoraciont5">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1544,7 +1602,7 @@ include("Includes/logo.php");
                         <td>Concluye la prueba de manera satisfactoria y verifica que los resultados fueron enviados
                             satisfactoriamente.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_6">
+                            <select name="valoracion" class="form-control" id="valoraciont5">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1558,7 +1616,7 @@ include("Includes/logo.php");
                             dotados de sistema antibloqueo se encienda el testigo de avería del sistema al entrar en
                             funcionamiento los rodillos del Frenómetro.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_7">
+                            <select name="valoracion" class="form-control" id="valoraciont5">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1569,7 +1627,7 @@ include("Includes/logo.php");
 
 
 
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="criterios">
                 <thead class="thead-dark">
                     <tr>
                         <th></th>
@@ -1587,7 +1645,7 @@ include("Includes/logo.php");
                             abordados, presenta argumentos de manera convincente, se encuentra familiarizado con los
                             métodos, procedimientos y demuestra competencia durante las actividades de inspección.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_1">
+                            <select name="valoracion" class="form-control" id="valoraciont6">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1599,7 +1657,7 @@ include("Includes/logo.php");
                         <td>Aportes: El Inspector de Linea, realiza aportes dejando entrever que indaga e investiga.
                         </td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_2">
+                            <select name="valoracion" class="form-control" id="valoraciont6">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1611,7 +1669,7 @@ include("Includes/logo.php");
                         <td>Fundamentos: El Inspector de Linea, enuncia la norma u otros artículos en los cuales apoya
                             sus argumentos.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_3">
+                            <select name="valoracion" class="form-control" id="valoraciont6">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1623,7 +1681,7 @@ include("Includes/logo.php");
                         <td>Dominio: El Inspector de Linea, comprende los temas abordados, utiliza argumentos coherentes
                             y lógicos.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_4">
+                            <select name="valoracion" class="form-control" id="valoraciont6">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1636,7 +1694,7 @@ include("Includes/logo.php");
                             precisas de acuerdo al resultado de unificación de criterios y lo establecido por la
                             normativa técnica aplicable al proceso de RTM.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_5">
+                            <select name="valoracion" class="form-control" id="valoraciont6">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1648,7 +1706,7 @@ include("Includes/logo.php");
                         <td>Claridad y Rigor Sistemático: El Inspector de Linea, es coherente con lo que dice y aplica.
                         </td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_6">
+                            <select name="valoracion" class="form-control" id="valoraciont6">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1661,7 +1719,7 @@ include("Includes/logo.php");
                             definiciones empleadas sobre los diferentes conceptos técnicos descritos en la Norma Técnica
                             y Reglamentación Aplicable a la RTM y EC son apropiadas y acorde a lo establecido.</td>
                         <td>
-                            <select name="valoracion" class="form-control" id="valoracion_7">
+                            <select name="valoracion" class="form-control" id="valoraciont6">
                                 <option value="1">1</option>
                                 <option value="0">0</option>
                             </select>
@@ -1677,5 +1735,39 @@ include("Includes/logo.php");
 
 </body>
 
+<footer>
+
+    <script src="JS/scriptFormularioSupervision.js"></script>
+
+
+
+</footer>
+
+<!-- Incluye la biblioteca jsPDF desde una CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+<!-- Tu código JavaScript -->
+<script>
+  // Función para generar el PDF
+  function generatePDF() {
+    // Crea una nueva instancia de jsPDF
+    const pdf = new jsPDF();
+
+    // Captura el contenido de tu página HTML
+    const content = document.documentElement;
+
+    // Convierte el contenido a una imagen base64
+    const imgData = pdf.html(content, {
+      callback: function (pdf) {
+        // Guarda el PDF con un nombre de archivo
+        pdf.save("mi_archivo.pdf");
+      },
+    });
+  }
+
+  // Agrega un controlador de eventos al botón
+  const generatePDFButton = document.getElementById("guardar");
+  generatePDFButton.addEventListener("click", generatePDF);
+</script>
 
 </html>

@@ -175,3 +175,10 @@ img {
       .form-control {
         text-align: center;
     }
+
+    .content-format {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 20px; /* Ajusta el margen según tus preferencias */
+  }
