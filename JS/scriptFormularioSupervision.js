@@ -1,18 +1,6 @@
-/*
-function cambiarID() {
 
-    var servicio = document.getElementById("selectServicio").value;
-    var valoracion = document.getElementById("valoraciont1");
-    if (servicio == "Particular") {
-        valoracion.id = "valoraciont1";
-    } else if (servicio == "Enseñanza") {
-        valoracion.id = "n/a";
-    }
-    console.log(valoracion.id);
-}
 
-cambiarID();
-*/
+
 
 $(document).ready(function () {
     $('.valoracion-select').on('change', function () {

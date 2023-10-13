@@ -5,7 +5,6 @@
 include("Includes/Head.php");
 include("Includes/nav.php");
 
-
 ?>
 
 <body>
@@ -13,7 +12,7 @@ include("Includes/nav.php");
 
     <div class="container mt-4">
 
-        <div class="row align-items-center justify-content-center" style="background-color: rgba(211, 211, 211, 1.0);">
+        <div class="row align-items-center justify-content-center">
             <div class="col-md-3 text-center">
                 <img src="https://cdacenda.com/wp-content/uploads/2022/05/cenda-footer.png" alt="Imagen"
                     class="img-fluid mb-6" style="max-width: 120px;" />
@@ -21,7 +20,7 @@ include("Includes/nav.php");
             <div class="col-md-6 text-center">
                 <h5>Supervisión en Motocicletas</h5>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-3 text-center border border-dark p-3">
                 <label for="version">
                     <h6>
                         VERSION: 09
@@ -34,8 +33,8 @@ include("Includes/nav.php");
                     </h6>
                 </label>
             </div>
-        </div>
 
+        </div>
 
 
         <form id="form-principal">
@@ -234,7 +233,6 @@ include("Includes/nav.php");
             </div>
 
 
-
             <!-- Tabla de Resultados -->
 
             <div class="row align-items-center justify-content-center"
@@ -297,7 +295,109 @@ include("Includes/nav.php");
                 <textarea class="form-control" id="conclusiones" rows="5"></textarea>
             </div>
 
-            <!-- Confirmación de Cumplimiento de Requisitos -->
+            <div class="row">
+
+                <div class="col-md-6 text-center">
+                    <div style="position: relative; text-align: center;">
+                        <p style="margin-bottom: 150px;">Inspector de Línea</p>
+                        <!-- Botón invisible para abrir un div oculto -->
+                        <button type="button" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer;" onclick="toggleHiddenDiv('inspectorDiv', 'inspectorContent')">Botón Invisible</button>
+                    </div>
+                    <div class="mx-auto">
+                        <img id="saved-signature" class="img-fluid signature-image" src="" style="display: none; max-width: 40%;">
+                    </div>
+                    <!-- Línea izquierda para la firma del Inspector -->
+                    <hr id="inspectorLine" style="border: 2px solid #000; width: 50%; margin: 0 auto;">
+            </div>
+
+
+            <div class="col-md-6 text-right">
+                <div style="position: relative; text-align: center;">
+                    <p style="margin-bottom: 150px;">Director Técnico</p>
+                    <!-- Botón invisible para abrir un div oculto del Director Técnico -->
+                    <button type="button" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer;" onclick="toggleHiddenDiv('directorDiv', 'directorContent')">Botón Invisible</button>
+                </div>
+                <div class="mx-auto">
+                    <img id="saved-signature2" class="img-fluid signature-image1" src="" style="display: none; max-width: 40%;">
+                </div>
+                <!-- Línea derecha para la firma del Director Técnico -->
+                <hr id="directorLine" style="border: 2px solid #000; width: 50%; margin: 0 auto;">
+            </div>
+
+            </div>
+
+
+<div id="inspectorDiv" style="display: none;">
+    <div id="inspectorContent">
+        <div class="signature-container">
+            <div class="card bg-white shadow rounded-lg">
+                <div class="card-body">
+                    <p>Firma del inspector de línea</p>
+                    <canvas id="signature-pad"></canvas>
+                    <div class="buttons-container">
+                        <button id="clear-button" class="btn btn-danger">Borrar firma</button>
+                        <button id="save-button" class="btn btn-primary">Guardar firma</button>
+                        <button id="reset-button" class="btn btn-warning">Reiniciar firma</button>
+                        <span id="clear-message" style="display: none;">Firma borrada. Puede volver a firmar.</span>
+                    </div>
+                    <div class="mt-3">
+                        <img id="saved-signature" src="" style="display: none;" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="JS/scriptfirma.js"></script>
+
+</div>
+
+<div id="directorDiv" style="display: none;">
+    <div id="directorContent">
+        <div class="signature-container">
+            <div class="card bg-white shadow rounded-lg">
+                <div class="card-body">
+                    <p>Firma del director técnico</p>
+                    <canvas id="signature-pad1"></canvas>
+                    <div class="buttons-container1">
+                    <button id="clear-button1" class="btn btn-danger">Borrar firma</button>
+                        <button id="save-button1" class="btn btn-primary">Guardar firma</button>
+                        <button id="reset-button1" class="btn btn-warning">Reiniciar firma</button>
+                        <span id="clear-message1" style="display: none;">Firma borrada. Puede volver a firmar.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="JS/scriptFirma2.js"></script>
+
+</div>
+
+    
+<script>
+    function toggleHiddenDiv(divId, contentId) {
+        const div = document.getElementById(divId);
+        const content = document.getElementById(contentId);
+
+        // Obtén el otro div y su contenido
+        const otherDivId = divId === "inspectorDiv" ? "directorDiv" : "inspectorDiv";
+        const otherDiv = document.getElementById(otherDivId);
+        const otherContent = document.getElementById(otherDivId.replace("Div", "Content"));
+
+        if (div.style.display === "none") {
+            div.style.display = "block"; // Muestra el div
+            content.style.display = "block"; // Muestra el contenido
+            otherDiv.style.display = "none"; // Oculta el otro div
+            otherContent.style.display = "none"; // Oculta el contenido del otro div
+        } else {
+            div.style.display = "none"; // Oculta el div
+            content.style.display = "none"; // Oculta el contenido
+        }
+    }
+</script>
+
+
+        <!-- Confirmación de Cumplimiento de Requisitos -->
 
             <div class="row align-items-center justify-content-center"
                 style="background-color: rgba(211, 211, 211, 1.0);">
